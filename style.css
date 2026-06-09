@@ -101,10 +101,11 @@ h1, h2, h3, h4, h5, h6 {
 /* Draggable Floating Controls */
 .floating-controls {
   position: fixed;
+  left: auto;
   right: 18px;
-  top: 50%;
-  bottom: auto;
-  transform: translateY(-50%);
+  top: auto;
+  bottom: max(18px, env(safe-area-inset-bottom));
+  transform: none;
   z-index: 999;
   display: flex;
   flex-direction: column;
@@ -146,7 +147,11 @@ h1, h2, h3, h4, h5, h6 {
   animation: rotateMusic 8s linear infinite;
   border-color: hsl(var(--gold-color));
 }
+.music-toggle {
+  order: 2;
+}
 .back-to-top-btn {
+  order: 1;
   opacity: 0;
   pointer-events: none;
   transform: translateY(8px) scale(0.92);
@@ -163,9 +168,9 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 768px) {
   .floating-controls {
-    right: 14px;
-    top: 50%;
-    bottom: auto;
+    left: auto;
+    right: max(14px, env(safe-area-inset-right));
+    bottom: max(14px, env(safe-area-inset-bottom));
     gap: 8px;
   }
 
