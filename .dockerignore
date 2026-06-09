@@ -1,0 +1,12 @@
+.git
+.vscode
+node_modules
+npm-debug.log*
+.env
+.DS_Store
+assets
+index.html
+reception.html
+style.css
+script.js
+docker

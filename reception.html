@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" content="notranslate">
+  <meta name="description" content="Abishmi and Shesh cordially invite you to celebrate their wedding in Kathmandu, Nepal. View event details, timeline, and submit your RSVP.">
+  <meta name="author" content="Abishmi & Shesh">
+  
+  <title>Abishmi & Shesh – Digital Wedding Invitation</title>
+
+  <!-- Premium Stylesheet link -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Floating Sayapatri (Marigold) Falling Flower Petals Canvas -->
+  <canvas id="particles-canvas" class="canvas-particles"></canvas>
+
+  <!-- ==========================================
+       NEPALI WEDDING ENVELOPE PRELOADER
+       ========================================== -->
+  <div id="envelope-screen">
+    <img class="envelope-fullscreen-image" src="assets/images/envelop.png" alt="Wedding invitation envelope">
+
+    <!-- Floating golden particle dots -->
+    <div class="envelope-particles" id="envelope-particles"></div>
+
+    <!-- Click hint -->
+    <div class="envelope-open-hint">
+      <span class="hint-icon">
+        <i data-lucide="sparkles"></i>
+      </span>
+      <span>Touch the Seal to Open</span>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MAIN WEDDING WEBSITE CONTENT
+       ========================================== -->
+  <div id="main-website">
+    
+    <!-- Draggable Floating Controls -->
+    <div class="floating-controls" id="floating-controls" aria-label="Floating quick controls">
+      <button class="floating-control-btn music-toggle" id="music-toggle-btn" aria-label="Toggle romantic wedding music" type="button">
+        <i id="music-icon" data-lucide="music"></i>
+      </button>
+      <button class="floating-control-btn back-to-top-btn" id="back-to-top-btn" aria-label="Back to top" type="button">
+        <i data-lucide="arrow-up"></i>
+      </button>
+    </div>
+
+    <!-- Floating Audio Element -->
+    <audio id="mangal-dhun-audio" src="assets/romantic_wedding.mp3" loop preload="auto"></audio>
+
+
+
+    <!-- ==========================================
+         HERO SECTION (COVER) WITH SCRATCH DATE
+         ========================================== -->
+    <section class="hero-section" id="hero">
+      <img class="hero-video-bg" src="assets/images/wedding_hero.png" alt="Traditional wedding mandap with Himalayan mountains" fetchpriority="high">
+      <div class="hero-video-overlay"></div>
+
+      <div class="hero-topline" aria-hidden="true">
+        <span>Abishmi &amp; Shesh</span>
+        <span>July 2026</span>
+      </div>
+      
+      <div class="hero-content">
+        <div class="ganesh-invocation" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120">
+            <path d="M50,15 C45,15 42,20 40,25 C45,28 55,28 60,25 C58,20 55,15 50,15 Z M50,7 C49,7 48,9 50,9 C52,9 51,7 50,7 Z M50,10 C48,10 47,13 50,13 C53,13 52,10 50,10 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M40,25 C32,25 28,32 28,40 C28,48 35,52 42,50 C38,55 35,62 38,68 C40,72 45,74 50,74 C55,74 60,72 62,68 C65,62 62,55 58,50 C65,52 72,48 72,40 C72,32 68,25 60,25" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M50,40 C43,43 45,55 50,58 C55,60 56,66 54,72 C51,78 42,76 42,82 C42,88 52,90 54,84 C56,78 62,80 62,70 C62,60 58,54 50,40 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M50,28 L50,36 M48,32 L52,32" fill="none" stroke="var(--crimson-accent)" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="68" cy="55" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </div>
+
+        <p class="hero-subtitle">Wedding Celebration</p>
+        <h1 class="hero-title">
+          <span>Abishmi</span>
+          <span>&amp;</span>
+          <span>Shesh</span>
+        </h1>
+        <p class="hero-names-details">Marriage: July 1, 2026</p>
+        <p class="hero-names-details hero-names-details--party">Party: July 3, 2026</p>
+        <p class="hero-location">Maxims Banquet &amp; Events and Buddha Palace, Kathmandu</p>
+
+        <div class="hero-actions">
+          <a class="hero-link" href="#invitation-preview">View Invitation</a>
+          <button class="hero-link hero-link--ghost calendar-add-btn" type="button">Add to Calendar</button>
+        </div>
+      </div>
+
+      <a class="hero-scroll-cue" href="#invitation-preview" aria-label="Scroll to invitation preview">
+        <span></span>
+      </a>
+    </section>
+
+    <section class="date-scratch-section reveal" aria-label="Scratch to reveal the wedding date">
+      <div class="date-scratch-copy">
+        <span class="invitation-preview-kicker">Save The Date</span>
+        <h2>Reveal the Celebration</h2>
+      </div>
+
+      <div class="scratch-card-container">
+        <div class="scratch-revealed-date">
+          <h3>July 1 &amp; 3, 2026</h3>
+          <p>Maxims Banquet &amp; Events and Buddha Palace, Kathmandu</p>
+          <button class="primary-btn calendar-add-btn" type="button">Add to Calendar</button>
+        </div>
+        <canvas class="scratch-canvas" id="scratch-canvas-el"></canvas>
+        <div class="scratch-instruction-overlay" id="scratch-hint">Scratch to discover the date</div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         FORMAL INVITATION PREVIEW
+         ========================================== -->
+    <section class="invitation-preview-section" id="invitation-preview" aria-label="Wedding invitation preview">
+      <div class="invitation-preview-copy">
+        <span class="invitation-preview-kicker">Formal Invitation</span>
+        <h2>Abishmi &amp; Shesh</h2>
+      </div>
+
+      <figure class="invitation-preview-frame">
+        <img src="assets/images/wedding_invitation.png" alt="Formal wedding invitation for Abishmi and Shesh" loading="lazy" decoding="async">
+      </figure>
+    </section>
+
+    <!-- ==========================================
+         WELCOME INVITATION SECTION
+         ========================================== -->
+    <section class="section welcome-section reveal" id="welcome">
+      <div class="section-title-wrapper">
+        <svg class="section-ornament" viewBox="0 0 80 20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M40,0 C45,5 55,5 60,10 C50,15 45,15 40,20 C35,15 30,15 20,10 C25,5 35,5 40,0 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="0" y1="10" x2="80" y2="10" stroke="currentColor" stroke-width="1" stroke-dasharray="2, 2"/>
+        </svg>
+        <h2 class="section-title">शुभ विवाह</h2>
+        <p class="section-subtitle">An Auspicious Union</p>
+      </div>
+
+      <div class="welcome-panel">
+        <div class="welcome-image-container">
+          <img src="assets/images/kalash_welcome.png" alt="Auspicious Kalash representing welcoming invitations" loading="lazy" decoding="async">
+        </div>
+
+        <div class="welcome-card-content">
+          <span class="welcome-kicker">With Lord Ganesh's Blessings</span>
+          <h3>Welcome to our Auspicious Day</h3>
+          <p class="welcome-lead">
+            With immense joy, we invite you to celebrate the sacred union of Abishmi and Shesh as two families come together in love, friendship, and lifelong spiritual partnership.
+          </p>
+          <p>
+            Your presence, warmth, and blessings will mean the world to us as we exchange our traditional vows in the beautiful valley of Kathmandu. Please join us in witnessing our union, sharing a grand traditional feast, and celebrating the beginning of our new chapter together.
+          </p>
+
+          <div class="inviter-names" aria-label="Inviting families">
+            <div class="inviter-group">
+              <h5>Groom's Parents</h5>
+              <p>Mr. &amp; Mrs. Shah</p>
+            </div>
+            <div class="inviter-divider" aria-hidden="true"></div>
+            <div class="inviter-group">
+              <h5>Bride's Parents</h5>
+              <p>Mr. &amp; Mrs. Neupane</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fine Section Divider -->
+    <div class="divider-ornament">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M12,2 C10,6 6,10 2,12 C6,14 10,18 12,22 C14,18 18,14 22,12 C18,10 14,6 12,2 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+    </div>
+
+    <!-- ==========================================
+         OUR LOVE STORY SECTION
+         ========================================== -->
+    <section class="section story-section reveal" id="our-story">
+      <div class="section-title-wrapper">
+        <svg class="section-ornament" viewBox="0 0 80 20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M40,0 C45,5 55,5 60,10 C50,15 45,15 40,20 C35,15 30,15 20,10 C25,5 35,5 40,0 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="0" y1="10" x2="80" y2="10" stroke="currentColor" stroke-width="1" stroke-dasharray="2, 2"/>
+        </svg>
+        <h2 class="section-title">हाम्रो प्रेम कथा</h2>
+        <p class="section-subtitle">Our Love Story</p>
+      </div>
+
+      <!-- Vertical Story Timeline -->
+      <div class="story-timeline">
+
+        <!-- Chapter 1: The Meeting -->
+        <div class="story-chapter reveal">
+          <div class="story-chapter-image">
+            <img src="assets/images/img0.png" alt="Abishmi and Shesh meeting at a school function">
+            <div class="story-chapter-number">०१</div>
+          </div>
+          <div class="story-chapter-text">
+            <span class="story-chapter-label">Chapter One</span>
+            <h3 class="story-chapter-title">The School Function</h3>
+            <p class="story-chapter-year">2010 • School Function</p>
+            <p class="story-chapter-desc">
+              It was back in 2010 during a lively school function when we first crossed paths. A simple introduction sparked a brief connection that stayed with both of us. Though life took us in different directions after school, we kept a quiet connection alive, staying in touch as social media friends and occasionally checking in on each other's journeys over the years.
+            </p>
+            <div class="story-chapter-ornament">
+              <svg viewBox="0 0 60 12" xmlns="http://www.w3.org/2000/svg">
+                <line x1="0" y1="6" x2="22" y2="6" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2"/>
+                <circle cx="30" cy="6" r="3" fill="currentColor"/>
+                <line x1="38" y1="6" x2="60" y2="6" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chapter 2: The First Date -->
+        <div class="story-chapter story-chapter--reverse reveal">
+          <div class="story-chapter-image">
+            <img src="assets/images/img2.png" alt="Abishmi and Shesh going on their first date">
+            <div class="story-chapter-number">०२</div>
+          </div>
+          <div class="story-chapter-text">
+            <span class="story-chapter-label">Chapter Two</span>
+            <h3 class="story-chapter-title">The First Date</h3>
+            <p class="story-chapter-year">July 7, 2023 • First Date</p>
+            <p class="story-chapter-desc">
+              After thirteen years of staying in contact as social media friends, our paths finally converged for our first official date on July 7, 2023. As we sat down and talked, all the years of digital separation vanished. We laughed, shared stories, and instantly realized that the connection we had maintained online was only the prelude to a beautiful real-life love story.
+            </p>
+            <div class="story-chapter-ornament">
+              <svg viewBox="0 0 60 12" xmlns="http://www.w3.org/2000/svg">
+                <line x1="0" y1="6" x2="22" y2="6" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2"/>
+                <circle cx="30" cy="6" r="3" fill="currentColor"/>
+                <line x1="38" y1="6" x2="60" y2="6" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chapter 3: The Proposal -->
+        <div class="story-chapter reveal">
+          <div class="story-chapter-image">
+            <img src="assets/images/img3.png" alt="Abishmi and Shesh proposing their forever love">
+            <div class="story-chapter-number">०३</div>
+          </div>
+          <div class="story-chapter-text">
+            <span class="story-chapter-label">Chapter Three</span>
+            <h3 class="story-chapter-title">Beginning of Our Forever</h3>
+            <p class="story-chapter-year">2026 • Heading to the Mandap</p>
+            <p class="story-chapter-desc">
+              Following that magical first date, our bond grew stronger with every shared laugh and conversation. Recognizing each other as life partners, and with the loving blessings of our families, we made the decision to unite our lives in marriage. Our journey from school function acquaintances to social media friends, and now to husband and wife, is about to begin.
+            </p>
+            <div class="story-chapter-ornament">
+              <svg viewBox="0 0 60 12" xmlns="http://www.w3.org/2000/svg">
+                <line x1="0" y1="6" x2="22" y2="6" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2"/>
+                <circle cx="30" cy="6" r="3" fill="currentColor"/>
+                <line x1="38" y1="6" x2="60" y2="6" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Fine Section Divider -->
+    <div class="divider-ornament">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M12,2 C10,6 6,10 2,12 C6,14 10,18 12,22 C14,18 18,14 22,12 C18,10 14,6 12,2 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+    </div>
+
+    <!-- ==========================================
+         ITINERARY / TIMELINE SECTION
+         ========================================== -->
+    <section class="section itinerary-section" id="itinerary">
+      <div class="section-title-wrapper">
+        <svg class="section-ornament" viewBox="0 0 80 20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M40,0 C45,5 55,5 60,10 C50,15 45,15 40,20 C35,15 30,15 20,10 C25,5 35,5 40,0 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="0" y1="10" x2="80" y2="10" stroke="currentColor" stroke-width="1" stroke-dasharray="2, 2"/>
+        </svg>
+        <h2 class="section-title">Wedding Itinerary</h2>
+        <p class="section-subtitle">The Ceremonies &amp; Celebrations</p>
+      </div>
+
+      <div class="timeline-container">
+        <!-- Event 1: Marriage -->
+        <div class="timeline-item reveal">
+          <div class="event-image-box">
+            <img src="assets/images/img4.png" alt="Traditional Nepalese marriage ceremony setup">
+          </div>
+          
+          <div class="event-details-card">
+            <span class="event-badge">Day 1 • Marriage</span>
+            <h3 class="event-title">Marriage Ceremony</h3>
+            
+            <div class="event-meta">
+              <div class="meta-item">
+                <i data-lucide="calendar"></i>
+                Wednesday, July 1, 2026
+              </div>
+              <div class="meta-item">
+                <i data-lucide="clock"></i>
+                11:00 AM Onwards
+              </div>
+              <div class="meta-item">
+                <i data-lucide="map-pin"></i>
+                Maxims Banquet &amp; Events, Kathmandu
+              </div>
+            </div>
+
+            <p class="event-description">
+              Join us for the sacred marriage ceremony as Abishmi and Shesh begin their life together with family blessings, traditional rituals, and heartfelt celebration.
+            </p>
+            <a href="https://maps.app.goo.gl/ZmFc1q9Lf7NHqP3k9" target="_blank" rel="noopener noreferrer" class="action-btn">
+              <i data-lucide="external-link"></i>
+              View Venue Map
+            </a>
+          </div>
+        </div>
+
+        <!-- Event 2: Party -->
+        <div class="timeline-item reveal">
+          <div class="event-image-box">
+            <img src="assets/images/maximg.png" alt="Wedding party banquet setup">
+          </div>
+          
+          <div class="event-details-card">
+            <span class="event-badge">Day 2 • Party</span>
+            <h3 class="event-title">Wedding Party</h3>
+            
+            <div class="event-meta">
+              <div class="meta-item">
+                <i data-lucide="calendar"></i>
+                Friday, July 3, 2026
+              </div>
+              <div class="meta-item">
+                <i data-lucide="clock"></i>
+                5:00 PM Onwards
+              </div>
+              <div class="meta-item">
+                <i data-lucide="map-pin"></i>
+                Buddha Palace, Kathmandu
+              </div>
+            </div>
+
+            <p class="event-description">
+              Celebrate with us at the wedding party with dinner, music, dancing, and a joyful evening with family and friends.
+            </p>
+            <a href="https://maps.app.goo.gl/6ctvC4EWxoSCcrECA" target="_blank" rel="noopener noreferrer" class="action-btn">
+              <i data-lucide="external-link"></i>
+              View Venue Map
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fine Section Divider -->
+    <div class="divider-ornament">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M12,2 C10,6 6,10 2,12 C6,14 10,18 12,22 C14,18 18,14 22,12 C18,10 14,6 12,2 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+    </div>
+
+    <!-- ==========================================
+         VENUE MAP SECTION
+         ========================================== -->
+    <section class="section venue-map-section" id="venue-map">
+      <div class="section-title-wrapper">
+        <svg class="section-ornament" viewBox="0 0 80 20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M40,0 C45,5 55,5 60,10 C50,15 45,15 40,20 C35,15 30,15 20,10 C25,5 35,5 40,0 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="0" y1="10" x2="80" y2="10" stroke="currentColor" stroke-width="1" stroke-dasharray="2, 2"/>
+        </svg>
+        <h2 class="section-title">हाम्रो स्थान</h2>
+        <p class="section-subtitle">Find the Celebration Venues</p>
+      </div>
+
+      <div class="venue-map-grid">
+
+        <!-- MAP 1: Marriage Ceremony -->
+        <div class="venue-map-card reveal">
+          <div class="venue-map-badge">
+            <i data-lucide="map-pin"></i>
+            <span>Marriage Ceremony</span>
+          </div>
+          <div class="venue-map-info">
+            <h3 class="venue-map-title">Maxims Banquet &amp; Events</h3>
+            <p class="venue-map-address">Marriage Ceremony • Kathmandu, Nepal</p>
+            <div class="venue-map-events">
+              <span class="venue-event-tag">July 1 – Marriage</span>
+            </div>
+          </div>
+          <div class="venue-map-embed">
+            <iframe
+              title="Maxims Banquet and Events map location"
+              src="https://www.google.com/maps?output=embed&amp;q=Maxims%20Banquet%20%26%20Events%20Kathmandu&amp;z=16"
+              width="100%"
+              height="320"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+          <a href="https://maps.app.goo.gl/ZmFc1q9Lf7NHqP3k9" target="_blank" rel="noopener noreferrer" class="venue-map-btn" id="ceremony-map-btn">
+            <i data-lucide="map"></i>
+            Open in Google Maps
+          </a>
+        </div>
+
+        <!-- MAP 2: Reception Party -->
+        <div class="venue-map-card reveal">
+          <div class="venue-map-badge venue-map-badge--reception">
+            <i data-lucide="party-popper"></i>
+            <span>Reception &amp; Party</span>
+          </div>
+          <div class="venue-map-info">
+            <h3 class="venue-map-title">Buddha Palace</h3>
+            <p class="venue-map-address">Reception &amp; Party • Kathmandu, Nepal</p>
+            <div class="venue-map-events">
+              <span class="venue-event-tag venue-event-tag--gold">July 3 – Party</span>
+              <span class="venue-event-tag venue-event-tag--gold">5:00 PM Onwards</span>
+            </div>
+          </div>
+          <div class="venue-map-embed">
+            <iframe
+              title="Buddha Palace map location"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56510.32926166983!2d85.2130632762314!3d27.720510163163386!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19760cf434b1%3A0x95451d28a8f300fa!2sBuddha%20Palace%20Banquet!5e0!3m2!1sen!2snp!4v1780693136600!5m2!1sen!2snp"
+              width="100%"
+              height="320"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+          <a href="https://maps.app.goo.gl/6ctvC4EWxoSCcrECA" target="_blank" rel="noopener noreferrer" class="venue-map-btn venue-map-btn--gold" id="reception-map-btn">
+            <i data-lucide="map"></i>
+            Open in Google Maps
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Getting there note -->
+      <div class="venue-map-notice reveal">
+        <i data-lucide="info"></i>
+        <p>The marriage ceremony will be held at <strong>Maxims Banquet &amp; Events</strong>, followed by the reception and party at <strong>Buddha Palace</strong>. Shuttle service is available for guests. See the RSVP section to request transportation.</p>
+      </div>
+    </section>
+
+    <!-- Fine Section Divider -->
+    <div class="divider-ornament">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M12,2 C10,6 6,10 2,12 C6,14 10,18 12,22 C14,18 18,14 22,12 C18,10 14,6 12,2 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+    </div>
+
+    <!-- ==========================================
+         RSVP FORM SECTION
+         ========================================== -->
+    <section class="section rsvp-section" id="rsvp">
+      <div class="section-title-wrapper">
+        <svg class="section-ornament" viewBox="0 0 80 20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M40,0 C45,5 55,5 60,10 C50,15 45,15 40,20 C35,15 30,15 20,10 C25,5 35,5 40,0 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="0" y1="10" x2="80" y2="10" stroke="currentColor" stroke-width="1" stroke-dasharray="2, 2"/>
+        </svg>
+        <h2 class="section-title">RSVP</h2>
+        <p class="section-subtitle">Kindly Respond by June 15, 2026</p>
+      </div>
+
+      <div class="card-elegant rsvp-card reveal">
+        
+        <!-- RSVP Form Element -->
+        <form class="rsvp-form" id="wedding-rsvp-form">
+          <div class="form-group-row">
+            <div class="form-group">
+              <label class="form-label" for="guest-fullname"><i data-lucide="user" class="form-field-icon"></i> Your Full Name</label>
+              <input class="form-input" type="text" id="guest-fullname" name="fullname" placeholder="E.g., Ram Bahadur" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="guest-email"><i data-lucide="mail" class="form-field-icon"></i> Email Address</label>
+              <input class="form-input" type="email" id="guest-email" name="email" placeholder="E.g., ram@gmail.com" required>
+            </div>
+          </div>
+
+          <div class="form-group-row">
+            <div class="form-group">
+              <label class="form-label" for="guest-count"><i data-lucide="users" class="form-field-icon"></i> Total Guests in Party</label>
+              <select class="form-input" id="guest-count" name="party_size">
+                <option value="1">1 Person</option>
+                <option value="2">2 People</option>
+                <option value="3">3 People</option>
+                <option value="4">4 People</option>
+                <option value="5">5 People</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="guest-dietary"><i data-lucide="utensils" class="form-field-icon"></i> Dietary Preferences</label>
+              <select class="form-input" id="guest-dietary" name="dietary">
+                <option value="none">Standard Traditional Menu</option>
+                <option value="veg">Traditional Nepalese Vegetarian Thali</option>
+                <option value="non-veg">Traditional Nepalese Non-Veg Banquet</option>
+                <option value="vegan">Strict Vegan / No Dairy</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Event check selection -->
+          <div class="form-group">
+            <label class="form-label"><i data-lucide="check-square" class="form-field-icon"></i> Which Events Will You Attend?</label>
+            <div class="events-select">
+              <label class="checkbox-label">
+                <input type="checkbox" name="event_swayambar" value="yes" checked>
+                <span class="custom-checkbox"></span>
+                Marriage Ceremony (July 1, 11:00 AM)
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="event_reception" value="yes" checked>
+                <span class="custom-checkbox"></span>
+                Wedding Party (July 3, 5:00 PM)
+              </label>
+            </div>
+          </div>
+
+          <!-- Shuttle bus transportation query -->
+          <div class="form-group">
+            <label class="form-label"><i data-lucide="bus" class="form-field-icon"></i> Janti Shuttle Service</label>
+            <div class="events-select">
+              <label class="checkbox-label">
+                <input type="checkbox" id="janti-transport" name="janti_transport" value="yes">
+                <span class="custom-checkbox"></span>
+                I require Janti shuttle transportation from Central Kathmandu to the venues
+              </label>
+            </div>
+          </div>
+
+          <!-- Song Suggestion field (from Mediterranean template) -->
+          <div class="form-group">
+            <label class="form-label" for="guest-song"><i data-lucide="music" class="form-field-icon"></i> Song Suggestion</label>
+            <input class="form-input" type="text" id="guest-song" name="song_suggestion" placeholder="Suggest a track for the DJ table...">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="guest-notes"><i data-lucide="message-square" class="form-field-icon"></i> Blessings / Special Notes</label>
+            <textarea class="form-input" id="guest-notes" name="notes" rows="4" placeholder="Share a lovely note or dietary allergies details..."></textarea>
+          </div>
+
+          <button class="primary-btn" type="submit" style="width: 100%; font-size: 12px; letter-spacing: 2px; font-weight: 700; margin-top: 10px;">Submit RSVP</button>
+        </form>
+
+        <!-- Form Success Overlay Screen -->
+        <div class="rsvp-success-overlay" id="rsvp-success-screen">
+          <div class="success-icon-box">
+            <i data-lucide="heart" class="success-heart-icon"></i>
+          </div>
+          <h3 class="success-title">Dhanyabad!</h3>
+          <p class="success-message">
+            Your RSVP has been submitted. An email draft has been prepared for neupane98088@gmail.com so your response can be sent right away.
+          </p>
+          <button class="action-btn" id="reset-rsvp-btn">Update RSVP Details</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
+    <footer>
+      <div class="footer-logo">A &amp; S</div>
+      <p class="footer-quote">"अहमादिर्हि देवानां महर्षीणां च सर्वशः" • Two Souls, One Destiny</p>
+      <p class="footer-copy">© 2026 Abishmi &amp; Shesh • Built with Mediterranean Elegance</p>
+    </footer>
+
+  </div>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.400.0/dist/umd/lucide.min.js"></script>
+  <!-- Modern ESM Script file -->
+  <script src="script.js"></script>
+</body>
+</html>
