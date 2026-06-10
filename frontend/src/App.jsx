@@ -826,11 +826,11 @@ export default function App() {
   // Parent names copy variables
   const groomParents = isReception
     ? "Mrs. & Mr. Shah"
-    : "Ms. Saradha Devi Shah & Mr. Nawashi Shah";
+    : "Ms. Sharada Devi Shah & Mr. Nawashi Shah";
 
   const brideParents = isReception
     ? "Mrs. & Mr. Neupane"
-    : "Ms. Sirana Neupane & Mr. Kamal Kumar Neupane";
+    : "Ms. Srijana Neupane & Mr. Kamal Kumar Neupane";
   return (
     <>
       {/* 1. Sayapatri Particles */}
