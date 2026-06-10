@@ -2236,3 +2236,12 @@ footer {
     height: 48vh;
   }
 }
+
+/* Envelope floating particles keyframe animation */
+@keyframes envelopeParticleFloat {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-110vh) translateX(calc(var(--particle-drift, 0px))); opacity: 0; }
+}
+
