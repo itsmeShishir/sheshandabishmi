@@ -846,7 +846,7 @@ export default function App() {
         >
           <img
             className="envelope-fullscreen-image"
-            src="/assets/images/envelop.png"
+            src="/assets/images/envelop.jpg"
             alt="Wedding invitation envelope"
             onError={(e) => {
               // Fallback: hide broken img, reveal CSS background color
@@ -926,7 +926,7 @@ export default function App() {
         <section className="hero-section" id="hero">
           <img
             className="hero-video-bg"
-            src={isReception ? "/assets/images/wedding_heros.png" : "/assets/images/wedding_hero.jpeg"}
+            src={isReception ? "/assets/images/wedding_heros.jpg" : "/assets/images/wedding_hero.jpeg"}
             alt="Traditional wedding mandap with Himalayan mountains"
             fetchPriority="high"
           />
@@ -1007,7 +1007,7 @@ export default function App() {
           </div>
 
           <figure className="invitation-preview-frame">
-            <img src="/assets/images/wedding_invitation.png" alt="Formal wedding invitation for Abishmi and Shesh" loading="lazy" decoding="async" />
+            <img src="/assets/images/wedding_invitation.jpg" alt="Formal wedding invitation for Abishmi and Shesh" loading="lazy" decoding="async" />
           </figure>
         </section>
 
@@ -1026,7 +1026,7 @@ export default function App() {
 
           <div className="welcome-panel">
             <div className="welcome-image-container">
-              <img src="/assets/images/kalash_welcome.png" alt="Auspicious Kalash representing welcoming invitations" loading="lazy" decoding="async" />
+              <img src="/assets/images/kalash_welcome.jpg" alt="Auspicious Kalash representing welcoming invitations" loading="lazy" decoding="async" />
             </div>
 
             <div className="welcome-card-content">
@@ -1075,7 +1075,7 @@ export default function App() {
             {/* Chapter 1 */}
             <div className="story-chapter reveal">
               <div className="story-chapter-image">
-                <img src="/assets/images/img0.png" alt="Abishmi and Shesh meeting at a school function" />
+                <img src="/assets/images/img0.jpg" alt="Abishmi and Shesh meeting at a school function" />
                 <div className="story-chapter-number">०१</div>
               </div>
               <div className="story-chapter-text">
@@ -1096,7 +1096,7 @@ export default function App() {
             {/* Chapter 2 */}
             <div className="story-chapter story-chapter--reverse reveal">
               <div className="story-chapter-image">
-                <img src="/assets/images/img2.png" alt="Abishmi and Shesh going on their first date" />
+                <img src="/assets/images/img2.jpg" alt="Abishmi and Shesh going on their first date" />
                 <div className="story-chapter-number">०२</div>
               </div>
               <div className="story-chapter-text">
@@ -1117,7 +1117,7 @@ export default function App() {
             {/* Chapter 3 */}
             <div className="story-chapter reveal">
               <div className="story-chapter-image">
-                <img src="/assets/images/img3.png" alt="Abishmi and Shesh proposing their forever love" />
+                <img src="/assets/images/img3.jpg" alt="Abishmi and Shesh proposing their forever love" />
                 <div className="story-chapter-number">०३</div>
               </div>
               <div className="story-chapter-text">
@@ -1161,7 +1161,7 @@ export default function App() {
           <div className="timeline-container">
             <div className="timeline-item reveal">
               <div className="event-image-box">
-                <img src={isReception ? "/assets/images/img4.png" : "/assets/images/maximss.png"} alt="Marriage ceremony venue" />
+                <img src={isReception ? "/assets/images/img4.jpg" : "/assets/images/maximss.jpg"} alt="Marriage ceremony venue" />
               </div>
               <div className="event-details-card">
                 <span className="event-badge">{t.day1Badge}</span>
@@ -1187,7 +1187,7 @@ export default function App() {
 
             <div className="timeline-item reveal">
               <div className="event-image-box">
-                <img src={isReception ? "/assets/images/maximg.png" : "/assets/images/img4.png"} alt="Wedding party banquet" />
+                <img src={isReception ? "/assets/images/maximg.jpg" : "/assets/images/img4.jpg"} alt="Wedding party banquet" />
               </div>
               <div className="event-details-card">
                 <span className="event-badge">{t.day2Badge}</span>
