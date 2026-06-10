@@ -627,7 +627,7 @@ export default function App() {
       const pathname = window.location.pathname.toLowerCase();
       const searchParams = new URLSearchParams(window.location.search);
       const inviteType = searchParams.get('type') || searchParams.get('invite');
-      
+
       const isRec = pathname.includes('reception') || inviteType === 'reception';
       setIsReception(isRec);
     };
@@ -724,8 +724,8 @@ export default function App() {
   const handleAddToCalendar = () => {
     const summary = "Abishmi & Shesh's Wedding Ceremonies";
     const details = isReception
-      ? "Together with their families, Mr. and Mrs. Shah and Mr. and Mrs. Neupane request the pleasure of your company to celebrate the wedding of Abishmi and Shesh. Marriage ceremony: July 1. Reception Party: July 3."
-      : "Together with their families, Mr. Kamal Kumar Neupane, Ms. Sirana Neupane, Mr. Nawashi Shah, and Ms. Saradha Devi Shah request the pleasure of your company to celebrate the wedding of Abishmi and Shesh. Marriage ceremony: July 1 at 11:30 AM. Reception Party: July 3 at 6:30 PM.";
+      ? "Together with their families, Mrs. and Mr. Neupane and Mrs. and Mr. Shah request the pleasure of your company to celebrate the wedding of Abishmi and Shesh. Marriage ceremony: July 1. Reception Party: July 3."
+      : "Together with their families, Ms. Sirana Neupane, Mr. Kamal Kumar Neupane, Ms. Saradha Devi Shah, and Mr. Nawashi Shah request the pleasure of your company to celebrate the wedding of Abishmi and Shesh. Marriage ceremony: July 1 at 11:30 AM. Reception Party: July 3 at 6:30 PM.";
     const location = "Maxims Banquet & Events and Buddha Palace, Kathmandu, Nepal";
     const startStr = "20260701T054500Z"; // July 1, 2026 11:30 AM NPT in UTC
     const endStr = "20260703T124500Z";   // July 3, 2026 6:30 PM NPT in UTC
@@ -745,22 +745,22 @@ export default function App() {
 
     const payload = isReception
       ? {
-          fullname: rsvpFormState.fullname,
-          email: rsvpFormState.email,
-          party_size: rsvpFormState.party_size,
-          dietary: rsvpFormState.dietary,
-          event_swayambar: rsvpFormState.event_swayambar ? 'yes' : 'no',
-          event_reception: rsvpFormState.event_reception ? 'yes' : 'no',
-          janti_transport: rsvpFormState.janti_transport ? 'yes' : 'no',
-          song_suggestion: rsvpFormState.song_suggestion,
-          notes: rsvpFormState.notes,
-          mode: 'reception'
-        }
+        fullname: rsvpFormState.fullname,
+        email: rsvpFormState.email,
+        party_size: rsvpFormState.party_size,
+        dietary: rsvpFormState.dietary,
+        event_swayambar: rsvpFormState.event_swayambar ? 'yes' : 'no',
+        event_reception: rsvpFormState.event_reception ? 'yes' : 'no',
+        janti_transport: rsvpFormState.janti_transport ? 'yes' : 'no',
+        song_suggestion: rsvpFormState.song_suggestion,
+        notes: rsvpFormState.notes,
+        mode: 'reception'
+      }
       : {
-          fullname: rsvpFormState.fullname,
-          notes: rsvpFormState.notes,
-          mode: 'wedding'
-        };
+        fullname: rsvpFormState.fullname,
+        notes: rsvpFormState.notes,
+        mode: 'wedding'
+      };
 
     try {
       const response = await fetch('/api/rsvp', {
@@ -825,13 +825,12 @@ export default function App() {
 
   // Parent names copy variables
   const groomParents = isReception
-    ? "Mr. & Mrs. Shah"
-    : "Mr. Kamal Kumar Neupane & Ms. Sirana Neupane";
+    ? "Mrs. & Mr. Shah"
+    : "Ms. Saradha Devi Shah & Mr. Nawashi Shah";
 
   const brideParents = isReception
-    ? "Mr. & Mrs. Neupane"
-    : "Mr. Nawashi Shah & Ms. Saradha Devi Shah";
-
+    ? "Mrs. & Mr. Neupane"
+    : "Ms. Sirana Neupane & Mr. Kamal Kumar Neupane";
   return (
     <>
       {/* 1. Sayapatri Particles */}
