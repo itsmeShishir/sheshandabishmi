@@ -17,11 +17,228 @@ import {
   MessageSquare,
   Info,
   Map,
-  PartyPopper,
-  Share2,
-  Copy,
-  Check
+  PartyPopper
 } from 'lucide-react';
+
+// ==========================================
+// TRANSLATIONS
+// ==========================================
+const TRANSLATIONS = {
+  en: {
+    // Hero
+    weddingCelebration: 'Wedding Celebration',
+    marriage: 'Marriage: July 1, 2026',
+    party: 'Party: July 3, 2026',
+    heroLocation: 'Maxims Banquet & Events and Buddha Palace, Kathmandu',
+    viewInvitation: 'View Invitation',
+    addToCalendar: 'Add to Calendar',
+    // Scratch card
+    saveTheDate: 'Save The Date',
+    revealCelebration: 'Reveal the Celebration',
+    scratchDate: 'July 1 & 3, 2026',
+    scratchVenue: 'Maxims Banquet & Events and Buddha Palace, Kathmandu',
+    // Invitation preview
+    formalInvitation: 'Formal Invitation',
+    // Welcome section
+    sectionWelcomeTitle: '\u0936\u0941\u092d \u0935\u093f\u0935\u093e\u0939',
+    sectionWelcomeSubtitle: 'An Auspicious Union',
+    welcomeKicker: "With Lord Ganesh's Blessings",
+    welcomeHeading: 'Welcome to our Auspicious Day',
+    welcomeLead: 'With immense joy, we invite you to celebrate the sacred union of Abishmi and Shesh as two families come together in love, friendship, and lifelong spiritual partnership.',
+    welcomeBody: 'Your presence, warmth, and blessings will mean the world to us as we exchange our traditional vows in the beautiful valley of Kathmandu. Please join us in witnessing our union, sharing a grand traditional feast, and celebrating the beginning of our new chapter together.',
+    groomParentsLabel: "Groom's Parents",
+    brideParentsLabel: "Bride's Parents",
+    // Story
+    sectionStoryTitle: '\u0939\u093e\u092e\u094d\u0930\u094b \u092a\u094d\u0930\u0947\u092e \u0915\u0925\u093e',
+    sectionStorySubtitle: 'Our Love Story',
+    ch1Label: 'Chapter One',
+    ch1Title: 'The School Function',
+    ch1Year: '2010 \u2022 School Function',
+    ch1Desc: 'It was back in 2010 during a lively school function when we first crossed paths. A simple introduction sparked a brief connection that stayed with both of us. Though life took us in different directions after school, we kept a quiet connection alive, staying in touch as social media friends and occasionally checking in on each other\u2019s journeys over the years.',
+    ch2Label: 'Chapter Two',
+    ch2Title: 'The First Date',
+    ch2Year: 'July 7, 2023 \u2022 First Date',
+    ch2Desc: 'After thirteen years of staying in contact as social media friends, our paths finally converged for our first official date on July 7, 2023. As we sat down and talked, all the years of digital separation vanished. We laughed, shared stories, and instantly realized that the connection we had maintained online was only the prelude to a beautiful real-life love story.',
+    ch3Label: 'Chapter Three',
+    ch3Title: 'Beginning of Our Forever',
+    ch3Year: '2026 \u2022 Heading to the Mandap',
+    ch3Desc: 'Following that magical first date, our bond grew stronger with every shared laugh and conversation. Recognizing each other as life partners, and with the loving blessings of our families, we made the decision to unite our lives in marriage. Our journey from school function acquaintances to social media friends, and now to husband and wife, is about to begin.',
+    // Itinerary
+    sectionItineraryTitle: 'Wedding Itinerary',
+    sectionItinerarySubtitle: 'The Ceremonies & Celebrations',
+    day1Badge: 'Day 1 \u2022 Marriage',
+    day1Title: 'Marriage Ceremony',
+    day1Date: 'Wednesday, July 1, 2026',
+    day1Time: '11:30 AM Onwards',
+    day1TimeReception: '11:00 AM Onwards',
+    day1Venue: 'Maxims Banquet & Events, Kathmandu',
+    muhurat: 'Muhurat & Varmala',
+    kanyadaan: 'Kanyadaan',
+    aarti: 'Aarti',
+    day1Desc: 'Join us for the sacred marriage ceremony as Abishmi and Shesh begin their life together with family blessings, traditional rituals, and heartfelt celebration.',
+    viewVenueMap: 'View Venue Map',
+    day2Badge: 'Day 2 \u2022 Party',
+    day2Title: 'Wedding Party',
+    day2Date: 'Friday, July 3, 2026',
+    day2Time: '6:30 PM Onwards',
+    day2TimeReception: '5:00 PM Onwards',
+    day2Venue: 'Buddha Palace, Kathmandu',
+    day2Desc: 'Celebrate with us at the wedding party with dinner, music, dancing, and a joyful evening with family and friends.',
+    openInMaps: 'Open in Google Maps',
+    // Venue map
+    sectionVenueTitle: '\u0939\u093e\u092e\u094d\u0930\u094b \u0938\u094d\u0925\u093e\u0928',
+    sectionVenueSubtitle: 'Find the Celebration Venues',
+    venueBadgeCeremony: 'Marriage Ceremony',
+    venueBadgeReception: 'Reception & Party',
+    venue1Title: 'Maxims Banquet & Events',
+    venue1Address: 'Marriage Ceremony \u2022 Kathmandu, Nepal',
+    venue1Tag: 'July 1 \u2013 Marriage',
+    venue2Title: 'Buddha Palace',
+    venue2Address: 'Reception & Party \u2022 Kathmandu, Nepal',
+    venue2Tag: 'July 3 \u2013 Party',
+    venueNotice: 'The marriage ceremony will be held at <strong>Maxims Banquet & Events</strong>, followed by the reception and party at <strong>Buddha Palace</strong>. Shuttle service is available for guests. See the RSVP section to request transportation.',
+    // RSVP
+    sectionRsvpTitle: 'RSVP',
+    sectionRsvpSubtitle: 'Kindly Respond by June 15, 2026',
+    yourFullName: 'Your Full Name',
+    namePlaceholder: 'E.g., Ram Bahadur',
+    emailAddress: 'Email Address',
+    emailPlaceholder: 'E.g., ram@gmail.com',
+    totalGuests: 'Total Guests in Party',
+    dietaryPrefs: 'Dietary Preferences',
+    dietaryStandard: 'Standard Traditional Menu',
+    dietaryVeg: 'Traditional Nepalese Vegetarian Thali',
+    dietaryNonVeg: 'Traditional Nepalese Non-Veg Banquet',
+    dietaryVegan: 'Strict Vegan / No Dairy',
+    whichEvents: 'Which Events Will You Attend?',
+    eventMarriage: 'Marriage Ceremony (July 1, 11:00 AM)',
+    eventParty: 'Wedding Party (July 3, 5:00 PM)',
+    jantiLabel: 'Janti Shuttle Service',
+    jantiText: 'I require Janti shuttle transportation from Central Kathmandu to the venues',
+    songLabel: 'Song Suggestion',
+    songPlaceholder: 'Suggest a track for the DJ table...',
+    blessingsLabel: 'Blessings / Special Notes',
+    blessingsPlaceholder: 'Share your blessings or a lovely note...',
+    blessingsPlaceholderReception: 'Share a lovely note or dietary allergies details...',
+    submitRsvp: 'Submit RSVP',
+    sendingRsvp: 'Sending RSVP...',
+    successTitle: 'Dhanyabad!',
+    successMsg: 'Your RSVP has been submitted. An email draft has been prepared for neupane98088@gmail.com so your response can be sent right away.',
+    updateRsvp: 'Update RSVP Details',
+    // Footer
+    footerQuote: '"\u0905\u0939\u092e\u093e\u0926\u093f\u0930\u094d\u0939\u093f \u0926\u0947\u0935\u093e\u0928\u093e\u0902 \u092e\u0939\u0930\u094d\u0937\u0940\u0923\u093e\u0902 \u091a \u0938\u0930\u094d\u0935\u0936\u0903" \u2022 Two Souls, One Destiny',
+    footerBrideGroom: 'Bride & Groom: 9851417703',
+    footerMama: 'Mama: 9851310689',
+    footerCopy: '\u00a9 2026 Abishmi & Shesh \u2022 Built with Mediterranean Elegance',
+  },
+  np: {
+    // Hero
+    weddingCelebration: '\u0935\u093f\u0935\u093e\u0939 \u0909\u0924\u094d\u0938\u0935',
+    marriage: '\u0935\u093f\u0935\u093e\u0939: \u0967 \u0938\u093e\u0909\u0928 \u0968\u0966\u0968\u0969',
+    party: '\u092a\u093e\u0930\u094d\u091f\u0940: \u0969 \u0938\u093e\u0909\u0928 \u0968\u0966\u0968\u0969',
+    heroLocation: '\u092e\u094d\u092f\u093e\u0915\u094d\u0938\u093f\u092e\u094d\u0938 \u092c\u094d\u092f\u093e\u0928\u094d\u0915\u0935\u0947\u091f \u0930 \u092c\u0941\u0926\u094d\u0927 \u092a\u094d\u092f\u093e\u0932\u0947\u0938, \u0915\u093e\u0920\u092e\u093e\u0921\u094c\u0902',
+    viewInvitation: '\u0928\u093f\u092e\u0928\u094d\u0924\u094d\u0930\u0923\u093e \u0939\u0947\u0930\u094d\u0928\u0941\u0939\u094b\u0938\u094d',
+    addToCalendar: '\u0915\u094d\u092f\u093e\u0932\u0947\u0928\u094d\u0921\u0930\u092e\u093e \u0925\u092a\u094d\u0928\u0941\u0939\u094b\u0938\u094d',
+    // Scratch card
+    saveTheDate: '\u0924\u093e\u0930\u093f\u0916 \u092f\u093e\u0926 \u0930\u093e\u0916\u094d\u0928\u0941\u0939\u094b\u0938\u094d',
+    revealCelebration: '\u0909\u0924\u094d\u0938\u0935 \u0916\u094b\u0932\u094d\u0928\u0941\u0939\u094b\u0938\u094d',
+    scratchDate: '\u0967 \u0930 \u0969 \u0938\u093e\u0909\u0928, \u0968\u0966\u0968\u0969',
+    scratchVenue: '\u092e\u094d\u092f\u093e\u0915\u094d\u0938\u093f\u092e\u094d\u0938 \u092c\u094d\u092f\u093e\u0928\u094d\u0915\u0935\u0947\u091f \u0930 \u092c\u0941\u0926\u094d\u0927 \u092a\u094d\u092f\u093e\u0932\u0947\u0938, \u0915\u093e\u0920\u092e\u093e\u0921\u094c\u0902',
+    // Invitation preview
+    formalInvitation: '\u0906\u0927\u093f\u0915\u093e\u0930\u093f\u0915 \u0928\u093f\u092e\u0928\u094d\u0924\u094d\u0930\u0923\u093e',
+    // Welcome section
+    sectionWelcomeTitle: '\u0936\u0941\u092d \u0935\u093f\u0935\u093e\u0939',
+    sectionWelcomeSubtitle: '\u090f\u0915 \u0936\u0941\u092d \u092e\u093f\u0932\u0928',
+    welcomeKicker: '\u0917\u0923\u0947\u0936\u091c\u0940\u0915\u094b \u0906\u0936\u0940\u0930\u094d\u0935\u093e\u0926\u0938\u0902\u0917',
+    welcomeHeading: '\u0939\u093e\u092e\u094d\u0930\u094b \u0936\u0941\u092d \u0926\u093f\u0928\u092e\u093e \u0938\u094d\u0935\u093e\u0917\u0924 \u091b',
+    welcomeLead: '\u0905\u0924\u094d\u092f\u0928\u094d\u0924 \u0939\u0930\u094d\u0937\u0915\u093e \u0938\u093e\u0925, \u0939\u093e\u092e\u0940 \u0924\u092a\u093e\u0908\u0902\u0932\u093e\u0908 \u0905\u092d\u093f\u0937\u0947\u0915\u0940 \u0930 \u0936\u0947\u0937\u0915\u094b \u092a\u0935\u093f\u0924\u094d\u0930 \u092e\u093f\u0932\u0928\u092e\u093e \u0938\u093e\u0915\u094d\u0937\u0940 \u0939\u0941\u0928 \u0928\u093f\u092e\u0928\u094d\u0924\u094d\u0930\u0923\u093e \u0917\u0930\u094d\u0926\u091b\u094c\u0902\u0964',
+    welcomeBody: '\u0915\u093e\u0920\u092e\u093e\u0921\u094c\u0902\u0915\u094b \u0938\u0941\u0928\u094d\u0926\u0930 \u0909\u092a\u0924\u094d\u092f\u0915\u093e\u092e\u093e \u0939\u093e\u092e\u0940\u0932\u0947 \u092a\u093e\u0930\u092e\u094d\u092a\u0930\u093f\u0915 \u092a\u094d\u0930\u0924\u093f\u091c\u094d\u091e\u093e \u0917\u0930\u094d\u0926\u093e \u0924\u092a\u093e\u0908\u0902\u0915\u094b \u0909\u092a\u0938\u094d\u0925\u093f\u0924\u093f, \u0909\u0937\u094d\u092e\u093e \u0930 \u0906\u0936\u0940\u0930\u094d\u0935\u093e\u0926\u0932\u0947 \u0939\u093e\u092e\u094d\u0930\u094b \u091c\u0940\u0935\u0928\u092e\u093e \u0905\u0930\u094d\u0925 \u0930\u093e\u0916\u094d\u0928\u0947\u091b\u0964 \u0915\u0943\u092a\u092f\u093e \u0939\u093e\u092e\u094d\u0930\u094b \u092e\u093f\u0932\u0928\u092e\u093e \u0938\u093e\u0915\u094d\u0937\u0940 \u092c\u0928\u094d\u0928\u0941\u0939\u094b\u0938\u094d\u0964',
+    groomParentsLabel: '\u0935\u0930\u0915\u093e \u0906\u092e\u093e\u092c\u093e\u092c\u093e',
+    brideParentsLabel: '\u0935\u0927\u0942\u0915\u093e \u0906\u092e\u093e\u092c\u093e\u092c\u093e',
+    // Story
+    sectionStoryTitle: '\u0939\u093e\u092e\u094d\u0930\u094b \u092a\u094d\u0930\u0947\u092e \u0915\u0925\u093e',
+    sectionStorySubtitle: '\u0939\u093e\u092e\u094d\u0930\u094b \u092a\u094d\u0930\u0947\u092e\u0915\u094b \u092f\u093e\u0924\u094d\u0930\u093e',
+    ch1Label: '\u092a\u094d\u0930\u0925\u092e \u0905\u0927\u094d\u092f\u093e\u092f',
+    ch1Title: '\u0935\u093f\u0926\u094d\u092f\u093e\u0932\u092f\u0915\u094b \u0915\u093e\u0930\u094d\u092f\u0915\u094d\u0930\u092e',
+    ch1Year: '\u0968\u0966\u0967\u0966 \u2022 \u0935\u093f\u0926\u094d\u092f\u093e\u0932\u092f \u0915\u093e\u0930\u094d\u092f\u0915\u094d\u0930\u092e',
+    ch1Desc: '\u0968\u0966\u0967\u0966 \u092e\u093e \u090f\u0909\u091f\u093e \u091a\u0939\u0932\u092a\u0939\u0932\u0915\u094b \u0935\u093f\u0926\u094d\u092f\u093e\u0932\u092f \u0915\u093e\u0930\u094d\u092f\u0915\u094d\u0930\u092e\u092e\u093e \u0939\u093e\u092e\u0940 \u092a\u0939\u093f\u0932\u094b \u092a\u091f\u0915 \u092d\u0947\u091f\u093f\u090f\u0964 \u090f\u0909\u091f\u093e \u0938\u093e\u0927\u093e\u0930\u0923 \u092a\u0930\u093f\u091a\u092f\u0932\u0947 \u090f\u0909\u091f\u093e \u0938\u0902\u0915\u094d\u0937\u093f\u092a\u094d\u0924 \u0938\u0902\u092c\u0928\u094d\u0927 \u091c\u0928\u094d\u092e\u093e\u092f\u094b \u091c\u0941\u0928 \u0939\u093e\u092e\u0940 \u0926\u0941\u0935\u0948\u092e\u093e \u092c\u0938\u093f\u0930\u0939\u094d\u092f\u094b\u0964 \u0935\u093f\u0926\u094d\u092f\u093e\u0932\u092f\u092a\u091b\u093f \u091c\u0940\u0935\u0928 \u0905\u0932\u0917\u0905\u0932\u0917 \u092e\u094b\u0921\u092e\u093e \u0917\u090f \u0924\u0930 \u0938\u093e\u092e\u093e\u091c\u093f\u0915 \u092e\u093f\u0921\u093f\u092f\u093e\u092e\u093e \u092e\u093f\u0924\u094d\u0930\u0915\u094b \u0930\u0942\u092a\u092e\u093e \u0938\u092e\u094d\u092a\u0930\u094d\u0915 \u0930\u093e\u0916\u094d\u092f\u094c\u0902\u0964',
+    ch2Label: '\u0926\u094b\u0938\u094d\u0930\u094b \u0905\u0927\u094d\u092f\u093e\u092f',
+    ch2Title: '\u092a\u0939\u093f\u0932\u094b \u092d\u0947\u091f',
+    ch2Year: '\u0967 \u0938\u093e\u0909\u0928 \u0968\u0966\u0968\u0969 \u2022 \u092a\u0939\u093f\u0932\u094b \u092d\u0947\u091f',
+    ch2Desc: '\u0924\u0947\u0930\u0939 \u0935\u0930\u094d\u0937\u0938\u092e\u094d\u092e \u0938\u093e\u092e\u093e\u091c\u093f\u0915 \u092e\u093f\u0921\u093f\u092f\u093e\u092e\u093e \u092e\u093f\u0924\u094d\u0930\u0915\u094b \u0930\u0942\u092a\u092e\u093e \u0938\u092e\u094d\u092a\u0930\u094d\u0915 \u0930\u093e\u0916\u0947\u092a\u091b\u093f \u0939\u093e\u092e\u094d\u0930\u094b \u092e\u093e\u0930\u094d\u0917 \u0967 \u0938\u093e\u0909\u0928 \u0968\u0966\u0968\u0969 \u092e\u093e \u092a\u0939\u093f\u0932\u094b \u092d\u0947\u091f\u092e\u093e \u092e\u093f\u0932\u093f\u092f\u094b\u0964 \u0939\u093e\u092e\u0940 \u092c\u0938\u0947\u0930 \u0915\u0941\u0930\u093e \u0917\u0930\u094d\u0926\u093e \u0935\u0930\u094d\u0937\u094c\u0902\u0915\u094b \u0926\u093f\u0917\u093f \u0935\u093f\u091b\u094b\u0921 \u0939\u0930\u093e\u092f\u094b\u0964 \u0939\u093e\u092e\u0940 \u0939\u093e\u0938\u094d\u092f\u094c\u0902, \u0915\u0941\u0930\u093e\u0915\u093e\u0928\u0940 \u0917\u0930\u094d\u092f\u094c\u0902 \u0930 \u092e\u0939\u0938\u0941\u0938 \u0917\u0930\u094d\u092f\u094c\u0902 \u0915\u093f \u092f\u094b \u0938\u092e\u094d\u092c\u0928\u094d\u0927 \u0935\u093e\u0938\u094d\u0924\u0935\u093f\u0915 \u091c\u0940\u0935\u0928\u0915\u094b \u092a\u094d\u0930\u0947\u092e\u0915\u0925\u093e\u0915\u094b \u092a\u094d\u0930\u0938\u094d\u0924\u093e\u0935\u0928\u093e \u092e\u093e\u0924\u094d\u0930 \u0925\u093f\u092f\u094b\u0964',
+    ch3Label: '\u0924\u0947\u0938\u094d\u0930\u094b \u0905\u0927\u094d\u092f\u093e\u092f',
+    ch3Title: '\u0939\u093e\u092e\u094d\u0930\u094b \u091c\u0940\u0935\u0928\u0915\u094b \u0936\u0941\u0930\u0941',
+    ch3Year: '\u0968\u0966\u0968\u0969 \u2022 \u092e\u0923\u094d\u0921\u092a\u0924\u0930\u092b \u091c\u093e\u0926\u0948',
+    ch3Desc: '\u0924\u094d\u092f\u094b \u091c\u093e\u0926\u0941\u0908 \u092a\u0939\u093f\u0932\u094b \u092d\u0947\u091f\u092a\u091b\u093f, \u0939\u093e\u092e\u094d\u0930\u094b \u092c\u0928\u094d\u0927\u0928 \u092a\u094d\u0930\u0924\u094d\u092f\u0947\u0915 \u0939\u093e\u0938\u094d\u092f\u0948 \u0930 \u0915\u0941\u0930\u093e\u0915\u093e\u0928\u0940\u0938\u0902\u0917 \u0917\u0939\u093f\u0930\u093f\u0928\u094d\u0926\u094b \u0917\u092f\u094b\u0964 \u090f\u0915\u0905\u0930\u094d\u0915\u093e\u0932\u093e\u0908 \u091c\u0940\u0935\u0928\u0938\u093e\u0925\u0940 \u092e\u093e\u0928\u094d\u0926\u0948 \u0930 \u092a\u0930\u093f\u0935\u093e\u0930\u0915\u094b \u0906\u0936\u0940\u0930\u094d\u0935\u093e\u0926\u0938\u0902\u0917 \u0935\u093f\u0935\u093e\u0939 \u0917\u0930\u094d\u0928\u0947 \u0928\u093f\u0930\u094d\u0923\u092f \u0917\u0930\u094d\u092f\u094c\u0902\u0964',
+    // Itinerary
+    sectionItineraryTitle: '\u0935\u093f\u0935\u093e\u0939 \u0915\u093e\u0930\u094d\u092f\u0924\u093e\u0932\u093f\u0915\u093e',
+    sectionItinerarySubtitle: '\u0935\u093f\u0927\u093f\u0939\u0930\u0942 \u0930 \u0909\u0924\u094d\u0938\u0935\u0939\u0930\u0942',
+    day1Badge: '\u092a\u0939\u093f\u0932\u094b \u0926\u093f\u0928 \u2022 \u0935\u093f\u0935\u093e\u0939',
+    day1Title: '\u0935\u093f\u0935\u093e\u0939 \u0938\u092e\u093e\u0930\u094b\u0939',
+    day1Date: '\u092c\u0941\u0927\u0935\u093e\u0930, \u0967 \u0938\u093e\u0909\u0928 \u0968\u0966\u0968\u0969',
+    day1Time: '\u0967\u0967:\u0969\u0966 \u092c\u091c\u0947\u0926\u0947\u0916\u093f',
+    day1TimeReception: '\u0967\u0967:\u0966\u0966 \u092c\u091c\u0947\u0926\u0947\u0916\u093f',
+    day1Venue: '\u092e\u094d\u092f\u093e\u0915\u094d\u0938\u093f\u092e\u094d\u0938 \u092c\u094d\u092f\u093e\u0928\u094d\u0915\u0935\u0947\u091f, \u0915\u093e\u0920\u092e\u093e\u0921\u094c\u0902',
+    muhurat: '\u092e\u0941\u0939\u0942\u0930\u094d\u0924 \u0930 \u0935\u0930\u092e\u093e\u0932\u093e',
+    kanyadaan: '\u0915\u0928\u094d\u092f\u093e\u0926\u093e\u0928',
+    aarti: '\u0906\u0930\u0924\u0940',
+    day1Desc: '\u0905\u092d\u093f\u0937\u0947\u0915\u0940 \u0930 \u0936\u0947\u0937\u0932\u0947 \u092a\u0930\u093f\u0935\u093e\u0930\u0915\u094b \u0906\u0936\u0940\u0930\u094d\u0935\u093e\u0926, \u092a\u0930\u092e\u094d\u092a\u0930\u093e\u0917\u0924 \u0935\u093f\u0927\u093f \u0930 \u0939\u0930\u094d\u0926\u093f\u0915 \u0909\u0924\u094d\u0938\u0935\u0938\u0902\u0917 \u0935\u093f\u0935\u093e\u0939 \u0938\u092e\u093e\u0930\u094b\u0939\u092e\u093e \u0938\u093e\u092e\u0947\u0932 \u0939\u0941\u0928\u0941\u0939\u094b\u0938\u094d\u0964',
+    viewVenueMap: '\u0938\u094d\u0925\u093e\u0928\u0915\u094b \u0928\u0915\u094d\u0938\u093e \u0939\u0947\u0930\u094d\u0928\u0941\u0939\u094b\u0938\u094d',
+    day2Badge: '\u0926\u094b\u0938\u094d\u0930\u094b \u0926\u093f\u0928 \u2022 \u092a\u093e\u0930\u094d\u091f\u0940',
+    day2Title: '\u0935\u093f\u0935\u093e\u0939 \u092a\u093e\u0930\u094d\u091f\u0940',
+    day2Date: '\u0936\u0941\u0915\u094d\u0930\u0935\u093e\u0930, \u0969 \u0938\u093e\u0909\u0928 \u0968\u0966\u0968\u0969',
+    day2Time: '\u0969:\u0969\u0966 \u092c\u091c\u0947\u0926\u0947\u0916\u093f',
+    day2TimeReception: '\u0968:\u0966\u0966 \u092c\u091c\u0947\u0926\u0947\u0916\u093f',
+    day2Venue: '\u092c\u0941\u0926\u094d\u0927 \u092a\u094d\u092f\u093e\u0932\u0947\u0938, \u0915\u093e\u0920\u092e\u093e\u0921\u094c\u0902',
+    day2Desc: '\u0930\u093e\u0924\u094d\u0930\u093f\u092d\u094b\u091c, \u0938\u0902\u0917\u0940\u0924, \u0928\u093e\u091a \u0930 \u092a\u0930\u093f\u0935\u093e\u0930 \u0924\u0925\u093e \u092e\u093f\u0924\u094d\u0930\u0939\u0930\u0942\u0938\u0902\u0917 \u0906\u0928\u0928\u094d\u0926\u092e\u092f \u0938\u093e\u0901\u091d\u0938\u0902\u0917 \u0935\u093f\u0935\u093e\u0939 \u092a\u093e\u0930\u094d\u091f\u0940\u092e\u093e \u0939\u093e\u092e\u0940\u0938\u0902\u0917 \u0909\u0924\u094d\u0938\u0935 \u092e\u0928\u093e\u0909\u0928\u0941\u0939\u094b\u0938\u094d\u0964',
+    openInMaps: '\u0917\u0942\u0917\u0932 \u092e\u094d\u092f\u093e\u092a\u092e\u093e \u0916\u094b\u0932\u094d\u0928\u0941\u0939\u094b\u0938\u094d',
+    // Venue map
+    sectionVenueTitle: '\u0939\u093e\u092e\u094d\u0930\u094b \u0938\u094d\u0925\u093e\u0928',
+    sectionVenueSubtitle: '\u0909\u0924\u094d\u0938\u0935\u0915\u094b \u0938\u094d\u0925\u093e\u0928 \u092b\u0947\u0932\u093e \u092a\u093e\u0930\u094d\u0928\u0941\u0939\u094b\u0938\u094d',
+    venueBadgeCeremony: '\u0935\u093f\u0935\u093e\u0939 \u0938\u092e\u093e\u0930\u094b\u0939',
+    venueBadgeReception: '\u0930\u093f\u0938\u0947\u092a\u094d\u0938\u0928 \u0930 \u092a\u093e\u0930\u094d\u091f\u0940',
+    venue1Title: '\u092e\u094d\u092f\u093e\u0915\u094d\u0938\u093f\u092e\u094d\u0938 \u092c\u094d\u092f\u093e\u0928\u094d\u0915\u0935\u0947\u091f',
+    venue1Address: '\u0935\u093f\u0935\u093e\u0939 \u0938\u092e\u093e\u0930\u094b\u0939 \u2022 \u0915\u093e\u0920\u092e\u093e\u0921\u094c\u0902, \u0928\u0947\u092a\u093e\u0932',
+    venue1Tag: '\u0967 \u0938\u093e\u0909\u0928 \u2013 \u0935\u093f\u0935\u093e\u0939',
+    venue2Title: '\u092c\u0941\u0926\u094d\u0927 \u092a\u094d\u092f\u093e\u0932\u0947\u0938',
+    venue2Address: '\u0930\u093f\u0938\u0947\u092a\u094d\u0938\u0928 \u0930 \u092a\u093e\u0930\u094d\u091f\u0940 \u2022 \u0915\u093e\u0920\u092e\u093e\u0921\u094c\u0902, \u0928\u0947\u092a\u093e\u0932',
+    venue2Tag: '\u0969 \u0938\u093e\u0909\u0928 \u2013 \u092a\u093e\u0930\u094d\u091f\u0940',
+    venueNotice: '\u0935\u093f\u0935\u093e\u0939 \u0938\u092e\u093e\u0930\u094b\u0939 <strong>\u092e\u094d\u092f\u093e\u0915\u094d\u0938\u093f\u092e\u094d\u0938 \u092c\u094d\u092f\u093e\u0928\u094d\u0915\u0935\u0947\u091f</strong>\u092e\u093e \u0939\u0941\u0928\u0947\u091b \u0930 \u0930\u093f\u0938\u0947\u092a\u094d\u0938\u0928 \u092a\u093e\u0930\u094d\u091f\u0940 <strong>\u092c\u0941\u0926\u094d\u0927 \u092a\u094d\u092f\u093e\u0932\u0947\u0938</strong>\u092e\u093e\u0964 \u0905\u0924\u093f\u0925\u093f\u0939\u0930\u0942\u0915\u093e \u0932\u093e\u0917\u093f \u0936\u091f\u0932 \u0938\u0947\u0935\u093e \u0909\u092a\u0932\u092c\u094d\u0927 \u091b\u0964',
+    // RSVP
+    sectionRsvpTitle: 'RSVP',
+    sectionRsvpSubtitle: '\u0967\u0968 \u091c\u0947\u0920 \u0968\u0966\u0968\u0969 \u0938\u092e\u094d\u092e \u091c\u0935\u093e\u092b \u0926\u093f\u0928\u0941\u0939\u094b\u0938\u094d',
+    yourFullName: '\u0924\u092a\u093e\u0908\u0902\u0915\u094b \u092a\u0942\u0930\u093e \u0928\u093e\u092e',
+    namePlaceholder: '\u0909\u0926\u093e.: \u0930\u093e\u092e \u092c\u0939\u093e\u0926\u0941\u0930',
+    emailAddress: '\u0907\u092e\u0947\u0932 \u0920\u0947\u0917\u093e\u0928\u093e',
+    emailPlaceholder: '\u0909\u0926\u093e.: ram@gmail.com',
+    totalGuests: '\u0915\u0941\u0932 \u0905\u0924\u093f\u0925\u093f \u0938\u0902\u0916\u094d\u092f\u093e',
+    dietaryPrefs: '\u0916\u093e\u0928\u093e\u092a\u093f\u0928\u093e \u0930\u0942\u091a\u093f',
+    dietaryStandard: '\u092a\u093e\u0930\u092e\u094d\u092a\u0930\u093f\u0915 \u0938\u093e\u0927\u093e\u0930\u0923 \u092e\u0947\u0928\u0941',
+    dietaryVeg: '\u0928\u0947\u092a\u093e\u0932\u0940 \u0936\u093e\u0915\u093e\u0939\u093e\u0930\u0940 \u0925\u093e\u0932\u0940',
+    dietaryNonVeg: '\u0928\u0947\u092a\u093e\u0932\u0940 \u092e\u093e\u0902\u0938\u093e\u0939\u093e\u0930\u0940 \u092d\u094b\u091c',
+    dietaryVegan: '\u0915\u0921\u093e \u0936\u093e\u0915\u093e\u0939\u093e\u0930\u0940 / \u0921\u0947\u0930\u0940 \u0928\u091a\u093e\u0939\u093f\u0928\u0947',
+    whichEvents: '\u0915\u0941\u0928 \u0915\u093e\u0930\u094d\u092f\u0915\u094d\u0930\u092e\u092e\u093e \u0906\u0909\u0928\u0941\u0939\u0941\u0928\u094d\u091b?',
+    eventMarriage: '\u0935\u093f\u0935\u093e\u0939 \u0938\u092e\u093e\u0930\u094b\u0939 (\u0967 \u0938\u093e\u0909\u0928, \u0967\u0967:\u0966\u0966 \u092c\u091c\u0947)',
+    eventParty: '\u0935\u093f\u0935\u093e\u0939 \u092a\u093e\u0930\u094d\u091f\u0940 (\u0969 \u0938\u093e\u0909\u0928, \u0968:\u0966\u0966 \u092c\u091c\u0947)',
+    jantiLabel: '\u091c\u093e\u0928\u094d\u0924\u0940 \u0936\u091f\u0932 \u0938\u0947\u0935\u093e',
+    jantiText: '\u092e\u0932\u093e\u0908 \u0915\u0947\u0928\u094d\u0926\u094d\u0930\u0940\u092f \u0915\u093e\u0920\u092e\u093e\u0921\u094c\u0902\u0926\u0947\u0916\u093f \u0938\u094d\u0925\u0932\u0939\u0930\u0942\u0938\u092e\u094d\u092e \u091c\u093e\u0928\u094d\u0924\u0940 \u0936\u091f\u0932 \u091a\u093e\u0939\u093f\u090f\u0914\u0932',
+    songLabel: '\u0917\u093e\u0928\u093e \u0938\u0941\u091d\u093e\u0935',
+    songPlaceholder: '\u0921\u093f\u091c\u0947 \u0924\u093e\u0932\u093f\u0915\u093e\u0915\u093e \u0932\u093e\u0917\u093f \u0917\u093e\u0928\u093e \u0938\u0941\u091d\u093e\u0909\u0928\u0941\u0939\u094b\u0938\u094d...',
+    blessingsLabel: '\u0906\u0936\u0940\u0930\u094d\u0935\u093e\u0926 / \u0935\u093f\u0936\u0947\u0937 \u091f\u093f\u092a\u094d\u092a\u0923\u0940',
+    blessingsPlaceholder: '\u0906\u0936\u0940\u0930\u094d\u0935\u093e\u0926 \u0926\u093f\u0928\u0941\u0939\u094b\u0938\u094d \u0935\u093e \u0938\u0941\u0928\u094d\u0926\u0930 \u0938\u0928\u094d\u0926\u0947\u0936 \u0932\u0947\u0916\u094d\u0928\u0941\u0939\u094b\u0938\u094d...',
+    blessingsPlaceholderReception: '\u0938\u0941\u0928\u094d\u0926\u0930 \u0938\u0928\u094d\u0926\u0947\u0936 \u0935\u093e \u0916\u093e\u0928\u093e\u092a\u093f\u0928\u093e \u090f\u0932\u0930\u094d\u091c\u0940 \u091c\u093e\u0928\u0915\u093e\u0930\u0940 \u0926\u093f\u0928\u0941\u0939\u094b\u0938\u094d...',
+    submitRsvp: 'RSVP \u092a\u0920\u093e\u0909\u0928\u0941\u0939\u094b\u0938\u094d',
+    sendingRsvp: 'RSVP \u092a\u0920\u093e\u0907\u0901\u0926\u0948...',
+    successTitle: '\u0927\u0928\u094d\u092f\u092c\u093e\u0926!',
+    successMsg: '\u0924\u092a\u093e\u0908\u0902\u0915\u094b RSVP \u092a\u0920\u093e\u0907\u092f\u094b\u0964 neupane98088@gmail.com \u092e\u093e \u0907\u092e\u0947\u0932 \u0924\u092f\u093e\u0930 \u092a\u093e\u0930\u093f\u090f\u0915\u094b \u091b\u0964',
+    updateRsvp: 'RSVP \u0935\u093f\u0935\u0930\u0923 \u0905\u092a\u0921\u0947\u091f \u0917\u0930\u094d\u0928\u0941\u0939\u094b\u0938\u094d',
+    // Footer
+    footerQuote: '"\u0905\u0939\u092e\u093e\u0926\u093f\u0930\u094d\u0939\u093f \u0926\u0947\u0935\u093e\u0928\u093e\u0902 \u092e\u0939\u0930\u094d\u0937\u0940\u0923\u093e\u0902 \u091a \u0938\u0930\u094d\u0935\u0936\u0903" \u2022 \u0926\u0941\u0908 \u0906\u0924\u094d\u092e\u093e, \u090f\u0915 \u092d\u093e\u0917\u094d\u092f',
+    footerBrideGroom: '\u0935\u0930\u0935\u0927\u0942: 9851417703',
+    footerMama: '\u092e\u093e\u092e\u093e: 9851310689',
+    footerCopy: '\u00a9 2026 \u0905\u092d\u093f\u0937\u0947\u0915\u0940 \u0930 \u0936\u0947\u0937 \u2022 \u092e\u0947\u0921\u093f\u091f\u0947\u0930\u0947\u0928\u093f\u092f\u0928 \u0938\u0941\u0928\u094d\u0926\u0930\u0924\u093e\u0938\u0902\u0917 \u0928\u093f\u0930\u094d\u092e\u093f\u0924',
+  }
+};
 
 // ==========================================
 // 1. MARIGOLD & SPARKS CANVAS COMPONENT
@@ -401,6 +618,9 @@ const ScratchCard = ({ isVisible }) => {
 export default function App() {
   // Mode detection: Wedding vs Reception
   const [isReception, setIsReception] = useState(false);
+  // Language toggle
+  const [lang, setLang] = useState('en');
+  const t = TRANSLATIONS[lang];
 
   useEffect(() => {
     const checkMode = () => {
@@ -435,38 +655,8 @@ export default function App() {
     notes: ''
   });
   const [isSendingRsvp, setIsSendingRsvp] = useState(false);
-  const [countdown, setCountdown] = useState({ days: '00', hours: '00', minutes: '00', seconds: '00' });
 
   const audioRef = useRef(null);
-
-  // Initialize and update countdown
-  useEffect(() => {
-    const targetTime = new Date('2026-07-01T11:30:00+05:45').getTime(); // Kathmandu Time
-    const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = targetTime - now;
-
-      if (distance < 0) {
-        setCountdown({ days: '00', hours: '00', minutes: '00', seconds: '00' });
-        clearInterval(interval);
-        return;
-      }
-
-      const d = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const s = Math.floor((distance % (1000 * 60)) / 1000);
-
-      setCountdown({
-        days: String(d).padStart(2, '0'),
-        hours: String(h).padStart(2, '0'),
-        minutes: String(m).padStart(2, '0'),
-        seconds: String(s).padStart(2, '0')
-      });
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   // Back to top observer
   useEffect(() => {
@@ -742,8 +932,17 @@ export default function App() {
           />
           <div className="hero-video-overlay" />
 
-          <div className="hero-topline" aria-hidden="true">
+          <div className="hero-topline">
             <span>Abishmi &amp; Shesh</span>
+            <button
+              className="topbar-lang-btn"
+              id="lang-toggle-btn"
+              aria-label="Toggle language between English and Nepali"
+              onClick={() => setLang(l => l === 'en' ? 'np' : 'en')}
+              type="button"
+            >
+              <span className="topbar-lang-label">{lang === 'en' ? 'नेपाली' : 'ENG'}</span>
+            </button>
             <span>July 2026</span>
           </div>
 
@@ -758,19 +957,19 @@ export default function App() {
               </svg>
             </div>
 
-            <p className="hero-subtitle">Wedding Celebration</p>
+            <p className="hero-subtitle">{t.weddingCelebration}</p>
             <h1 className="hero-title">
               <span>Abishmi</span>
               <span>&amp;</span>
               <span>Shesh</span>
             </h1>
-            <p className="hero-names-details">Marriage: July 1, 2026</p>
-            <p className="hero-names-details hero-names-details--party">Party: July 3, 2026</p>
-            <p className="hero-location">Maxims Banquet &amp; Events and Buddha Palace, Kathmandu</p>
+            <p className="hero-names-details">{t.marriage}</p>
+            <p className="hero-names-details hero-names-details--party">{t.party}</p>
+            <p className="hero-location">{t.heroLocation}</p>
 
             <div className="hero-actions">
-              <a className="hero-link" href="#invitation-preview">View Invitation</a>
-              <button className="hero-link hero-link--ghost calendar-add-btn" onClick={handleAddToCalendar} type="button">Add to Calendar</button>
+              <a className="hero-link" href="#invitation-preview">{t.viewInvitation}</a>
+              <button className="hero-link hero-link--ghost calendar-add-btn" onClick={handleAddToCalendar} type="button">{t.addToCalendar}</button>
             </div>
           </div>
 
@@ -784,37 +983,17 @@ export default function App() {
              ========================================== */}
         <section className="date-scratch-section reveal" aria-label="Scratch to reveal the wedding date">
           <div className="date-scratch-copy">
-            <span className="invitation-preview-kicker">Save The Date</span>
-            <h2>Reveal the Celebration</h2>
+            <span className="invitation-preview-kicker">{t.saveTheDate}</span>
+            <h2>{t.revealCelebration}</h2>
           </div>
 
           <div className="scratch-card-container">
             <div className="scratch-revealed-date">
-              <h3>July 1 &amp; 3, 2026</h3>
-              <p>Maxims Banquet &amp; Events and Buddha Palace, Kathmandu</p>
-              <button className="primary-btn calendar-add-btn" onClick={handleAddToCalendar} type="button">Add to Calendar</button>
+              <h3>{t.scratchDate}</h3>
+              <p>{t.scratchVenue}</p>
+              <button className="primary-btn calendar-add-btn" onClick={handleAddToCalendar} type="button">{t.addToCalendar}</button>
             </div>
             <ScratchCard isVisible={envelopeAnimationDone} />
-          </div>
-
-          {/* Countdown timer under scratch card */}
-          <div className="countdown-container reveal">
-            <div className="countdown-box">
-              <span className="countdown-number" id="days-val">{countdown.days}</span>
-              <span className="countdown-label" style={{ fontSize: '7px', letterSpacing: '1.2px', textTransform: 'uppercase', color: 'hsl(var(--sage-color))', fontWeight: 600 }}>Days</span>
-            </div>
-            <div className="countdown-box">
-              <span className="countdown-number" id="hours-val">{countdown.hours}</span>
-              <span className="countdown-label" style={{ fontSize: '7px', letterSpacing: '1.2px', textTransform: 'uppercase', color: 'hsl(var(--sage-color))', fontWeight: 600 }}>Hours</span>
-            </div>
-            <div className="countdown-box">
-              <span className="countdown-number" id="minutes-val">{countdown.minutes}</span>
-              <span className="countdown-label" style={{ fontSize: '7px', letterSpacing: '1.2px', textTransform: 'uppercase', color: 'hsl(var(--sage-color))', fontWeight: 600 }}>Mins</span>
-            </div>
-            <div className="countdown-box">
-              <span className="countdown-number" id="seconds-val">{countdown.seconds}</span>
-              <span className="countdown-label" style={{ fontSize: '7px', letterSpacing: '1.2px', textTransform: 'uppercase', color: 'hsl(var(--sage-color))', fontWeight: 600 }}>Secs</span>
-            </div>
           </div>
         </section>
 
@@ -823,7 +1002,7 @@ export default function App() {
              ========================================== */}
         <section className="invitation-preview-section" id="invitation-preview" aria-label="Wedding invitation preview">
           <div className="invitation-preview-copy">
-            <span class="invitation-preview-kicker">Formal Invitation</span>
+            <span className="invitation-preview-kicker">{t.formalInvitation}</span>
             <h2>Abishmi &amp; Shesh</h2>
           </div>
 
@@ -841,8 +1020,8 @@ export default function App() {
               <path d="M40,0 C45,5 55,5 60,10 C50,15 45,15 40,20 C35,15 30,15 20,10 C25,5 35,5 40,0 Z" fill="none" stroke="currentColor" strokeWidth="1.5" />
               <line x1="0" y1="10" x2="80" y2="10" stroke="currentColor" strokeWidth="1" strokeDasharray="2, 2" />
             </svg>
-            <h2 className="section-title">शुभ विवाह</h2>
-            <p className="section-subtitle">An Auspicious Union</p>
+            <h2 className="section-title">{t.sectionWelcomeTitle}</h2>
+            <p className="section-subtitle">{t.sectionWelcomeSubtitle}</p>
           </div>
 
           <div className="welcome-panel">
@@ -851,23 +1030,19 @@ export default function App() {
             </div>
 
             <div className="welcome-card-content">
-              <span className="welcome-kicker">With Lord Ganesh's Blessings</span>
-              <h3>Welcome to our Auspicious Day</h3>
-              <p className="welcome-lead">
-                With immense joy, we invite you to celebrate the sacred union of Abishmi and Shesh as two families come together in love, friendship, and lifelong spiritual partnership.
-              </p>
-              <p>
-                Your presence, warmth, and blessings will mean the world to us as we exchange our traditional vows in the beautiful valley of Kathmandu. Please join us in witnessing our union, sharing a grand traditional feast, and celebrating the beginning of our new chapter together.
-              </p>
+              <span className="welcome-kicker">{t.welcomeKicker}</span>
+              <h3>{t.welcomeHeading}</h3>
+              <p className="welcome-lead">{t.welcomeLead}</p>
+              <p>{t.welcomeBody}</p>
 
               <div className="inviter-names" aria-label="Inviting families">
                 <div className="inviter-group">
-                  <h5>Groom's Parents</h5>
+                  <h5>{t.groomParentsLabel}</h5>
                   <p>{groomParents}</p>
                 </div>
                 <div className="inviter-divider" aria-hidden="true" />
                 <div className="inviter-group">
-                  <h5>Bride's Parents</h5>
+                  <h5>{t.brideParentsLabel}</h5>
                   <p>{brideParents}</p>
                 </div>
               </div>
@@ -890,26 +1065,24 @@ export default function App() {
           <div className="section-title-wrapper">
             <svg className="section-ornament" viewBox="0 0 80 20" xmlns="http://www.w3.org/2000/svg">
               <path d="M40,0 C45,5 55,5 60,10 C50,15 45,15 40,20 C35,15 30,15 20,10 C25,5 35,5 40,0 Z" fill="none" stroke="currentColor" strokeWidth="1.5" />
-              <line x1="0" y1="10" x2="80" y2="10" stroke="currentColor" stroke-width="1" stroke-dasharray="2, 2" />
+              <line x1="0" y1="10" x2="80" y2="10" stroke="currentColor" strokeWidth="1" strokeDasharray="2, 2" />
             </svg>
-            <h2 class="section-title">हाम्रो प्रेम कथा</h2>
-            <p className="section-subtitle">Our Love Story</p>
+            <h2 className="section-title">{t.sectionStoryTitle}</h2>
+            <p className="section-subtitle">{t.sectionStorySubtitle}</p>
           </div>
 
           <div className="story-timeline">
-            {/* Chapter 1: The Meeting */}
+            {/* Chapter 1 */}
             <div className="story-chapter reveal">
               <div className="story-chapter-image">
                 <img src="/assets/images/img0.png" alt="Abishmi and Shesh meeting at a school function" />
                 <div className="story-chapter-number">०१</div>
               </div>
               <div className="story-chapter-text">
-                <span className="story-chapter-label">Chapter One</span>
-                <h3 className="story-chapter-title">The School Function</h3>
-                <p className="story-chapter-year">2010 • School Function</p>
-                <p className="story-chapter-desc">
-                  It was back in 2010 during a lively school function when we first crossed paths. A simple introduction sparked a brief connection that stayed with both of us. Though life took us in different directions after school, we kept a quiet connection alive, staying in touch as social media friends and occasionally checking in on each other's journeys over the years.
-                </p>
+                <span className="story-chapter-label">{t.ch1Label}</span>
+                <h3 className="story-chapter-title">{t.ch1Title}</h3>
+                <p className="story-chapter-year">{t.ch1Year}</p>
+                <p className="story-chapter-desc">{t.ch1Desc}</p>
                 <div className="story-chapter-ornament">
                   <svg viewBox="0 0 60 12" xmlns="http://www.w3.org/2000/svg">
                     <line x1="0" y1="6" x2="22" y2="6" stroke="currentColor" strokeWidth="1" strokeDasharray="2,2" />
@@ -920,19 +1093,17 @@ export default function App() {
               </div>
             </div>
 
-            {/* Chapter 2: The First Date */}
+            {/* Chapter 2 */}
             <div className="story-chapter story-chapter--reverse reveal">
               <div className="story-chapter-image">
                 <img src="/assets/images/img2.png" alt="Abishmi and Shesh going on their first date" />
                 <div className="story-chapter-number">०२</div>
               </div>
               <div className="story-chapter-text">
-                <span className="story-chapter-label">Chapter Two</span>
-                <h3 className="story-chapter-title">The First Date</h3>
-                <p className="story-chapter-year">July 7, 2023 • First Date</p>
-                <p className="story-chapter-desc">
-                  After thirteen years of staying in contact as social media friends, our paths finally converged for our first official date on July 7, 2023. As we sat down and talked, all the years of digital separation vanished. We laughed, shared stories, and instantly realized that the connection we had maintained online was only the prelude to a beautiful real-life love story.
-                </p>
+                <span className="story-chapter-label">{t.ch2Label}</span>
+                <h3 className="story-chapter-title">{t.ch2Title}</h3>
+                <p className="story-chapter-year">{t.ch2Year}</p>
+                <p className="story-chapter-desc">{t.ch2Desc}</p>
                 <div className="story-chapter-ornament">
                   <svg viewBox="0 0 60 12" xmlns="http://www.w3.org/2000/svg">
                     <line x1="0" y1="6" x2="22" y2="6" stroke="currentColor" strokeWidth="1" strokeDasharray="2,2" />
@@ -943,24 +1114,22 @@ export default function App() {
               </div>
             </div>
 
-            {/* Chapter 3: Proposal */}
+            {/* Chapter 3 */}
             <div className="story-chapter reveal">
               <div className="story-chapter-image">
                 <img src="/assets/images/img3.png" alt="Abishmi and Shesh proposing their forever love" />
                 <div className="story-chapter-number">०३</div>
               </div>
               <div className="story-chapter-text">
-                <span className="story-chapter-label">Chapter Three</span>
-                <h3 className="story-chapter-title">Beginning of Our Forever</h3>
-                <p className="story-chapter-year">2026 • Heading to the Mandap</p>
-                <p className="story-chapter-desc">
-                  Following that magical first date, our bond grew stronger with every shared laugh and conversation. Recognizing each other as life partners, and with the loving blessings of our families, we made the decision to unite our lives in marriage. Our journey from school function acquaintances to social media friends, and now to husband and wife, is about to begin.
-                </p>
+                <span className="story-chapter-label">{t.ch3Label}</span>
+                <h3 className="story-chapter-title">{t.ch3Title}</h3>
+                <p className="story-chapter-year">{t.ch3Year}</p>
+                <p className="story-chapter-desc">{t.ch3Desc}</p>
                 <div className="story-chapter-ornament">
                   <svg viewBox="0 0 60 12" xmlns="http://www.w3.org/2000/svg">
                     <line x1="0" y1="6" x2="22" y2="6" stroke="currentColor" strokeWidth="1" strokeDasharray="2,2" />
                     <circle cx="30" cy="6" r="3" fill="currentColor" />
-                    <line x1="38" y1="6" x2="60" y2="6" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2" />
+                    <line x1="38" y1="6" x2="60" y2="6" stroke="currentColor" strokeWidth="1" strokeDasharray="2,2" />
                   </svg>
                 </div>
               </div>
@@ -982,113 +1151,55 @@ export default function App() {
         <section className="section itinerary-section" id="itinerary">
           <div className="section-title-wrapper">
             <svg className="section-ornament" viewBox="0 0 80 20" xmlns="http://www.w3.org/2000/svg">
-              <path d="M40,0 C45,5 55,5 60,10 C50,15 45,15 40,20 C35,15 30,15 20,10 C25,5 35,5 40,0 Z" fill="none" stroke="currentColor" stroke-width="1.5" />
-              <line x1="0" y1="10" x2="80" y2="10" stroke="currentColor" stroke-width="1" stroke-dasharray="2, 2" />
+              <path d="M40,0 C45,5 55,5 60,10 C50,15 45,15 40,20 C35,15 30,15 20,10 C25,5 35,5 40,0 Z" fill="none" stroke="currentColor" strokeWidth="1.5" />
+              <line x1="0" y1="10" x2="80" y2="10" stroke="currentColor" strokeWidth="1" strokeDasharray="2, 2" />
             </svg>
-            <h2 className="section-title">Wedding Itinerary</h2>
-            <p className="section-subtitle">The Ceremonies &amp; Celebrations</p>
+            <h2 className="section-title">{t.sectionItineraryTitle}</h2>
+            <p className="section-subtitle">{t.sectionItinerarySubtitle}</p>
           </div>
 
           <div className="timeline-container">
-            {/* Event 1: Marriage */}
             <div className="timeline-item reveal">
               <div className="event-image-box">
-                <img
-                  src={isReception ? "/assets/images/img4.png" : "/assets/images/maximss.png"}
-                  alt="Marriage ceremony venue exterior"
-                />
+                <img src={isReception ? "/assets/images/img4.png" : "/assets/images/maximss.png"} alt="Marriage ceremony venue" />
               </div>
-
               <div className="event-details-card">
-                <span className="event-badge">Day 1 • Marriage</span>
-                <h3 className="event-title">Marriage Ceremony</h3>
-
+                <span className="event-badge">{t.day1Badge}</span>
+                <h3 className="event-title">{t.day1Title}</h3>
                 <div className="event-meta">
-                  <div className="meta-item">
-                    <Calendar style={{ width: 14, height: 14 }} />
-                    Wednesday, July 1, 2026
-                  </div>
-                  <div className="meta-item">
-                    <Clock style={{ width: 14, height: 14 }} />
-                    {isReception ? "11:00 AM Onwards" : "11:30 AM Onwards"}
-                  </div>
-                  <div className="meta-item">
-                    <MapPin style={{ width: 14, height: 14 }} />
-                    Maxims Banquet &amp; Events, Kathmandu
-                  </div>
+                  <div className="meta-item"><Calendar style={{ width: 14, height: 14 }} />{t.day1Date}</div>
+                  <div className="meta-item"><Clock style={{ width: 14, height: 14 }} />{isReception ? t.day1TimeReception : t.day1Time}</div>
+                  <div className="meta-item"><MapPin style={{ width: 14, height: 14 }} />{t.day1Venue}</div>
                 </div>
-
                 {!isReception && (
                   <div className="ceremony-highlights" aria-label="Marriage ceremony timings">
-                    <div>
-                      <span>Muhurat &amp; Varmala</span>
-                      <strong>11:30 AM</strong>
-                    </div>
-                    <div>
-                      <span>Kanyadaan</span>
-                      <strong>1:30 PM</strong>
-                    </div>
-                    <div>
-                      <span>Aarti</span>
-                      <strong>6:40 PM</strong>
-                    </div>
+                    <div><span>{t.muhurat}</span><strong>11:30 AM</strong></div>
+                    <div><span>{t.kanyadaan}</span><strong>1:30 PM</strong></div>
+                    <div><span>{t.aarti}</span><strong>6:40 PM</strong></div>
                   </div>
                 )}
-
-                <p className="event-description">
-                  Join us for the sacred marriage ceremony as Abishmi and Shesh begin their life together with family blessings, traditional rituals, and heartfelt celebration.
-                </p>
-                <a
-                  href="https://maps.app.goo.gl/ZmFc1q9Lf7NHqP3k9"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="action-btn"
-                >
-                  <ExternalLink style={{ width: 14, height: 14 }} />
-                  View Venue Map
+                <p className="event-description">{t.day1Desc}</p>
+                <a href="https://maps.app.goo.gl/ZmFc1q9Lf7NHqP3k9" target="_blank" rel="noopener noreferrer" className="action-btn">
+                  <ExternalLink style={{ width: 14, height: 14 }} />{t.viewVenueMap}
                 </a>
               </div>
             </div>
 
-            {/* Event 2: Party */}
             <div className="timeline-item reveal">
               <div className="event-image-box">
-                <img
-                  src={isReception ? "/assets/images/maximg.png" : "/assets/images/img4.png"}
-                  alt="Wedding party banquet setup"
-                />
+                <img src={isReception ? "/assets/images/maximg.png" : "/assets/images/img4.png"} alt="Wedding party banquet" />
               </div>
-
               <div className="event-details-card">
-                <span className="event-badge">Day 2 • Party</span>
-                <h3 className="event-title">Wedding Party</h3>
-
+                <span className="event-badge">{t.day2Badge}</span>
+                <h3 className="event-title">{t.day2Title}</h3>
                 <div className="event-meta">
-                  <div className="meta-item">
-                    <Calendar style={{ width: 14, height: 14 }} />
-                    Friday, July 3, 2026
-                  </div>
-                  <div className="meta-item">
-                    <Clock style={{ width: 14, height: 14 }} />
-                    {isReception ? "5:00 PM Onwards" : "6:30 PM Onwards"}
-                  </div>
-                  <div className="meta-item">
-                    <MapPin style={{ width: 14, height: 14 }} />
-                    Buddha Palace, Kathmandu
-                  </div>
+                  <div className="meta-item"><Calendar style={{ width: 14, height: 14 }} />{t.day2Date}</div>
+                  <div className="meta-item"><Clock style={{ width: 14, height: 14 }} />{isReception ? t.day2TimeReception : t.day2Time}</div>
+                  <div className="meta-item"><MapPin style={{ width: 14, height: 14 }} />{t.day2Venue}</div>
                 </div>
-
-                <p className="event-description">
-                  Celebrate with us at the wedding party with dinner, music, dancing, and a joyful evening with family and friends.
-                </p>
-                <a
-                  href="https://maps.app.goo.gl/6ctvC4EWxoSCcrECA"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="action-btn"
-                >
-                  <ExternalLink style={{ width: 14, height: 14 }} />
-                  View Venue Map
+                <p className="event-description">{t.day2Desc}</p>
+                <a href="https://maps.app.goo.gl/6ctvC4EWxoSCcrECA" target="_blank" rel="noopener noreferrer" className="action-btn">
+                  <ExternalLink style={{ width: 14, height: 14 }} />{t.viewVenueMap}
                 </a>
               </div>
             </div>
@@ -1109,93 +1220,63 @@ export default function App() {
         <section className="section venue-map-section" id="venue-map">
           <div className="section-title-wrapper">
             <svg className="section-ornament" viewBox="0 0 80 20" xmlns="http://www.w3.org/2000/svg">
-              <path d="M40,0 C45,5 55,5 60,10 C50,15 45,15 40,20 C35,15 30,15 20,10 C25,5 35,5 40,0 Z" fill="none" stroke="currentColor" stroke-width="1.5" />
-              <line x1="0" y1="10" x2="80" y2="10" stroke="currentColor" stroke-width="1" stroke-dasharray="2, 2" />
+              <path d="M40,0 C45,5 55,5 60,10 C50,15 45,15 40,20 C35,15 30,15 20,10 C25,5 35,5 40,0 Z" fill="none" stroke="currentColor" strokeWidth="1.5" />
+              <line x1="0" y1="10" x2="80" y2="10" stroke="currentColor" strokeWidth="1" strokeDasharray="2, 2" />
             </svg>
-            <h2 className="section-title">हाम्रो स्थान</h2>
-            <p className="section-subtitle">Find the Celebration Venues</p>
+            <h2 className="section-title">{t.sectionVenueTitle}</h2>
+            <p className="section-subtitle">{t.sectionVenueSubtitle}</p>
           </div>
 
           <div className="venue-map-grid">
-            {/* MAP 1: Marriage Ceremony */}
             <div className="venue-map-card reveal">
               <div className="venue-map-badge">
                 <MapPin style={{ width: 14, height: 14 }} />
-                <span>Marriage Ceremony</span>
+                <span>{t.venueBadgeCeremony}</span>
               </div>
               <div className="venue-map-info">
-                <h3 class="venue-map-title">Maxims Banquet &amp; Events</h3>
-                <p className="venue-map-address">Marriage Ceremony • Kathmandu, Nepal</p>
+                <h3 className="venue-map-title">{t.venue1Title}</h3>
+                <p className="venue-map-address">{t.venue1Address}</p>
                 <div className="venue-map-events">
-                  <span className="venue-event-tag">July 1 – Marriage</span>
+                  <span className="venue-event-tag">{t.venue1Tag}</span>
                 </div>
               </div>
               <div className="venue-map-embed">
-                <iframe
-                  title="Maxims Banquet and Events map location"
-                  src="https://www.google.com/maps?output=embed&amp;q=Maxims%20Banquet%20%26%20Events%20Kathmandu&amp;z=16"
-                  width="100%"
-                  height="320"
-                  style={{ border: 0 }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
+                <iframe title="Maxims Banquet and Events map location"
+                  src="https://www.google.com/maps?output=embed&q=Maxims%20Banquet%20%26%20Events%20Kathmandu&z=16"
+                  width="100%" height="320" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
               </div>
-              <a
-                href="https://maps.app.goo.gl/ZmFc1q9Lf7NHqP3k9"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="venue-map-btn"
-                id="ceremony-map-btn"
-              >
-                <Map style={{ width: 14, height: 14 }} />
-                Open in Google Maps
+              <a href="https://maps.app.goo.gl/ZmFc1q9Lf7NHqP3k9" target="_blank" rel="noopener noreferrer" className="venue-map-btn" id="ceremony-map-btn">
+                <Map style={{ width: 14, height: 14 }} />{t.openInMaps}
               </a>
             </div>
 
-            {/* MAP 2: Reception Party */}
             <div className="venue-map-card reveal">
               <div className="venue-map-badge venue-map-badge--reception">
                 <PartyPopper style={{ width: 14, height: 14 }} />
-                <span>Reception &amp; Party</span>
+                <span>{t.venueBadgeReception}</span>
               </div>
               <div className="venue-map-info">
-                <h3 className="venue-map-title">Buddha Palace</h3>
-                <p className="venue-map-address">Reception &amp; Party • Kathmandu, Nepal</p>
+                <h3 className="venue-map-title">{t.venue2Title}</h3>
+                <p className="venue-map-address">{t.venue2Address}</p>
                 <div className="venue-map-events">
-                  <span className="venue-event-tag venue-event-tag--gold">July 3 – Party</span>
-                  <span className="venue-event-tag venue-event-tag--gold">{isReception ? "5:00 PM Onwards" : "6:30 PM Onwards"}</span>
+                  <span className="venue-event-tag venue-event-tag--gold">{t.venue2Tag}</span>
+                  <span className="venue-event-tag venue-event-tag--gold">{isReception ? t.day2TimeReception : t.day2Time}</span>
                 </div>
               </div>
               <div className="venue-map-embed">
-                <iframe
-                  title="Buddha Palace map location"
+                <iframe title="Buddha Palace map location"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56510.32926166983!2d85.2130632762314!3d27.720510163163386!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19760cf434b1%3A0x95451d28a8f300fa!2sBuddha%20Palace%20Banquet!5e0!3m2!1sen!2snp!4v1780693136600!5m2!1sen!2snp"
-                  width="100%"
-                  height="320"
-                  style={{ border: 0 }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
+                  width="100%" height="320" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
               </div>
-              <a
-                href="https://maps.app.goo.gl/6ctvC4EWxoSCcrECA"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="venue-map-btn venue-map-btn--gold"
-                id="reception-map-btn"
-              >
-                <Map style={{ width: 14, height: 14 }} />
-                Open in Google Maps
+              <a href="https://maps.app.goo.gl/6ctvC4EWxoSCcrECA" target="_blank" rel="noopener noreferrer" className="venue-map-btn venue-map-btn--gold" id="reception-map-btn">
+                <Map style={{ width: 14, height: 14 }} />{t.openInMaps}
               </a>
             </div>
           </div>
 
           <div className="venue-map-notice reveal">
             <Info style={{ width: 14, height: 14, flexShrink: 0 }} />
-            <p>The marriage ceremony will be held at <strong>Maxims Banquet &amp; Events</strong>, followed by the reception and party at <strong>Buddha Palace</strong>. Shuttle service is available for guests. See the RSVP section to request transportation.</p>
+            <p dangerouslySetInnerHTML={{ __html: t.venueNotice }} />
           </div>
         </section>
 
@@ -1228,301 +1309,113 @@ export default function App() {
                     <div className="form-group-row">
                       <div className="form-group">
                         <label className="form-label" htmlFor="guest-fullname">
-                          <User className="form-field-icon" style={{ width: 14, height: 14 }} /> Your Full Name
+                          <User className="form-field-icon" style={{ width: 14, height: 14 }} /> {t.yourFullName}
                         </label>
-                        <input
-                          className="form-input"
-                          type="text"
-                          id="guest-fullname"
-                          name="fullname"
-                          placeholder="E.g., Ram Bahadur"
-                          value={rsvpFormState.fullname}
-                          onChange={(e) => setRsvpFormState({ ...rsvpFormState, fullname: e.target.value })}
-                          required
-                        />
+                        <input className="form-input" type="text" id="guest-fullname" name="fullname"
+                          placeholder={t.namePlaceholder} value={rsvpFormState.fullname}
+                          onChange={(e) => setRsvpFormState({ ...rsvpFormState, fullname: e.target.value })} required />
                       </div>
                       <div className="form-group">
                         <label className="form-label" htmlFor="guest-email">
-                          <Mail className="form-field-icon" style={{ width: 14, height: 14 }} /> Email Address
+                          <Mail className="form-field-icon" style={{ width: 14, height: 14 }} /> {t.emailAddress}
                         </label>
-                        <input
-                          className="form-input"
-                          type="email"
-                          id="guest-email"
-                          name="email"
-                          placeholder="E.g., ram@gmail.com"
-                          value={rsvpFormState.email}
-                          onChange={(e) => setRsvpFormState({ ...rsvpFormState, email: e.target.value })}
-                          required
-                        />
+                        <input className="form-input" type="email" id="guest-email" name="email"
+                          placeholder={t.emailPlaceholder} value={rsvpFormState.email}
+                          onChange={(e) => setRsvpFormState({ ...rsvpFormState, email: e.target.value })} required />
                       </div>
                     </div>
-
                     <div className="form-group-row">
                       <div className="form-group">
                         <label className="form-label" htmlFor="guest-count">
-                          <Users className="form-field-icon" style={{ width: 14, height: 14 }} /> Total Guests in Party
+                          <Users className="form-field-icon" style={{ width: 14, height: 14 }} /> {t.totalGuests}
                         </label>
-                        <select
-                          className="form-input"
-                          id="guest-count"
-                          name="party_size"
-                          value={rsvpFormState.party_size}
-                          onChange={(e) => setRsvpFormState({ ...rsvpFormState, party_size: e.target.value })}
-                        >
-                          <option value="1">1 Person</option>
-                          <option value="2">2 People</option>
-                          <option value="3">3 People</option>
-                          <option value="4">4 People</option>
-                          <option value="5">5 People</option>
+                        <select className="form-input" id="guest-count" name="party_size"
+                          value={rsvpFormState.party_size} onChange={(e) => setRsvpFormState({ ...rsvpFormState, party_size: e.target.value })}>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
                         </select>
                       </div>
                       <div className="form-group">
                         <label className="form-label" htmlFor="guest-dietary">
-                          <Utensils className="form-field-icon" style={{ width: 14, height: 14 }} /> Dietary Preferences
+                          <Utensils className="form-field-icon" style={{ width: 14, height: 14 }} /> {t.dietaryPrefs}
                         </label>
-                        <select
-                          className="form-input"
-                          id="guest-dietary"
-                          name="dietary"
-                          value={rsvpFormState.dietary}
-                          onChange={(e) => setRsvpFormState({ ...rsvpFormState, dietary: e.target.value })}
-                        >
-                          <option value="none">Standard Traditional Menu</option>
-                          <option value="veg">Traditional Nepalese Vegetarian Thali</option>
-                          <option value="non-veg">Traditional Nepalese Non-Veg Banquet</option>
-                          <option value="vegan">Strict Vegan / No Dairy</option>
+                        <select className="form-input" id="guest-dietary" name="dietary"
+                          value={rsvpFormState.dietary} onChange={(e) => setRsvpFormState({ ...rsvpFormState, dietary: e.target.value })}>
+                          <option value="none">{t.dietaryStandard}</option>
+                          <option value="veg">{t.dietaryVeg}</option>
+                          <option value="non-veg">{t.dietaryNonVeg}</option>
+                          <option value="vegan">{t.dietaryVegan}</option>
                         </select>
                       </div>
                     </div>
-
                     <div className="form-group">
-                      <label className="form-label">
-                        <CheckSquare className="form-field-icon" style={{ width: 14, height: 14 }} /> Which Events Will You Attend?
-                      </label>
+                      <label className="form-label"><CheckSquare className="form-field-icon" style={{ width: 14, height: 14 }} /> {t.whichEvents}</label>
                       <div className="events-select">
                         <label className="checkbox-label">
-                          <input
-                            type="checkbox"
-                            name="event_swayambar"
-                            checked={rsvpFormState.event_swayambar}
-                            onChange={(e) => setRsvpFormState({ ...rsvpFormState, event_swayambar: e.target.checked })}
-                          />
-                          <span className="custom-checkbox" />
-                          Marriage Ceremony (July 1, 11:00 AM)
+                          <input type="checkbox" name="event_swayambar" checked={rsvpFormState.event_swayambar}
+                            onChange={(e) => setRsvpFormState({ ...rsvpFormState, event_swayambar: e.target.checked })} />
+                          <span className="custom-checkbox" />{t.eventMarriage}
                         </label>
                         <label className="checkbox-label">
-                          <input
-                            type="checkbox"
-                            name="event_reception"
-                            checked={rsvpFormState.event_reception}
-                            onChange={(e) => setRsvpFormState({ ...rsvpFormState, event_reception: e.target.checked })}
-                          />
-                          <span className="custom-checkbox" />
-                          Wedding Party (July 3, 5:00 PM)
+                          <input type="checkbox" name="event_reception" checked={rsvpFormState.event_reception}
+                            onChange={(e) => setRsvpFormState({ ...rsvpFormState, event_reception: e.target.checked })} />
+                          <span className="custom-checkbox" />{t.eventParty}
                         </label>
                       </div>
                     </div>
-
                     <div className="form-group">
-                      <label className="form-label">
-                        <Bus className="form-field-icon" style={{ width: 14, height: 14 }} /> Janti Shuttle Service
-                      </label>
+                      <label className="form-label"><Bus className="form-field-icon" style={{ width: 14, height: 14 }} /> {t.jantiLabel}</label>
                       <div className="events-select">
                         <label className="checkbox-label">
-                          <input
-                            type="checkbox"
-                            id="janti-transport"
-                            name="janti_transport"
-                            checked={rsvpFormState.janti_transport}
-                            onChange={(e) => setRsvpFormState({ ...rsvpFormState, janti_transport: e.target.checked })}
-                          />
-                          <span className="custom-checkbox" />
-                          I require Janti shuttle transportation from Central Kathmandu to the venues
+                          <input type="checkbox" id="janti-transport" name="janti_transport" checked={rsvpFormState.janti_transport}
+                            onChange={(e) => setRsvpFormState({ ...rsvpFormState, janti_transport: e.target.checked })} />
+                          <span className="custom-checkbox" />{t.jantiText}
                         </label>
                       </div>
                     </div>
-
                     <div className="form-group">
                       <label className="form-label" htmlFor="guest-song">
-                        <Music className="form-field-icon" style={{ width: 14, height: 14 }} /> Song Suggestion
+                        <Music className="form-field-icon" style={{ width: 14, height: 14 }} /> {t.songLabel}
                       </label>
-                      <input
-                        className="form-input"
-                        type="text"
-                        id="guest-song"
-                        name="song_suggestion"
-                        placeholder="Suggest a track for the DJ table..."
-                        value={rsvpFormState.song_suggestion}
-                        onChange={(e) => setRsvpFormState({ ...rsvpFormState, song_suggestion: e.target.value })}
-                      />
+                      <input className="form-input" type="text" id="guest-song" name="song_suggestion"
+                        placeholder={t.songPlaceholder} value={rsvpFormState.song_suggestion}
+                        onChange={(e) => setRsvpFormState({ ...rsvpFormState, song_suggestion: e.target.value })} />
                     </div>
                   </>
                 ) : (
                   <div className="form-group">
                     <label className="form-label" htmlFor="guest-fullname">
-                      <User className="form-field-icon" style={{ width: 14, height: 14 }} /> Your Full Name
+                      <User className="form-field-icon" style={{ width: 14, height: 14 }} /> {t.yourFullName}
                     </label>
-                    <input
-                      className="form-input"
-                      type="text"
-                      id="guest-fullname"
-                      name="fullname"
-                      placeholder="E.g., Ram Bahadur"
-                      value={rsvpFormState.fullname}
-                      onChange={(e) => setRsvpFormState({ ...rsvpFormState, fullname: e.target.value })}
-                      required
-                    />
+                    <input className="form-input" type="text" id="guest-fullname" name="fullname"
+                      placeholder={t.namePlaceholder} value={rsvpFormState.fullname}
+                      onChange={(e) => setRsvpFormState({ ...rsvpFormState, fullname: e.target.value })} required />
                   </div>
                 )}
-
                 <div className="form-group">
                   <label className="form-label" htmlFor="guest-notes">
-                    <MessageSquare className="form-field-icon" style={{ width: 14, height: 14 }} /> Blessings / Special Notes
+                    <MessageSquare className="form-field-icon" style={{ width: 14, height: 14 }} /> {t.blessingsLabel}
                   </label>
-                  <textarea
-                    className="form-input"
-                    id="guest-notes"
-                    name="notes"
-                    rows={isReception ? 4 : 5}
-                    placeholder={isReception ? "Share a lovely note or dietary allergies details..." : "Share your blessings or a lovely note..."}
-                    value={rsvpFormState.notes}
-                    onChange={(e) => setRsvpFormState({ ...rsvpFormState, notes: e.target.value })}
-                  />
+                  <textarea className="form-input" id="guest-notes" name="notes" rows={isReception ? 4 : 5}
+                    placeholder={isReception ? t.blessingsPlaceholderReception : t.blessingsPlaceholder}
+                    value={rsvpFormState.notes} onChange={(e) => setRsvpFormState({ ...rsvpFormState, notes: e.target.value })} />
                 </div>
-
-                <button
-                  className="primary-btn"
-                  type="submit"
-                  disabled={isSendingRsvp}
-                  style={{ width: '100%', fontSize: '12px', letterSpacing: '2px', fontWeight: 700, marginTop: '10px' }}
-                >
-                  {isSendingRsvp ? 'Sending RSVP...' : 'Submit RSVP'}
+                <button className="primary-btn" type="submit" disabled={isSendingRsvp}
+                  style={{ width: '100%', fontSize: '12px', letterSpacing: '2px', fontWeight: 700, marginTop: '10px' }}>
+                  {isSendingRsvp ? t.sendingRsvp : t.submitRsvp}
                 </button>
               </form>
             ) : (
               <div className="rsvp-success-overlay active" id="rsvp-success-screen">
-                <div className="success-icon-box">
-                  <Heart className="success-heart-icon" />
-                </div>
-                <h3 className="success-title">Dhanyabad!</h3>
-                <p className="success-message">
-                  Your RSVP has been submitted. An email draft has been prepared for neupane98088@gmail.com so your response can be sent right away.
-                </p>
-                <button className="action-btn" id="reset-rsvp-btn" onClick={handleResetRsvp}>
-                  Update RSVP Details
-                </button>
+                <div className="success-icon-box"><Heart className="success-heart-icon" /></div>
+                <h3 className="success-title">{t.successTitle}</h3>
+                <p className="success-message">{t.successMsg}</p>
+                <button className="action-btn" id="reset-rsvp-btn" onClick={handleResetRsvp}>{t.updateRsvp}</button>
               </div>
             )}
-          </div>
-        </section>
-
-        {/* ==========================================
-             SOCIAL SHARE SECTION
-             ========================================== */}
-        <section className="social-share-section reveal" aria-label="Share this invitation">
-          <div className="social-share-inner">
-            <div className="social-share-header">
-              <Heart className="social-share-heart" />
-              <h2 className="social-share-title">Spread the Joy</h2>
-              <p className="social-share-subtitle">Help us share our special day — send the invitation to those who matter</p>
-            </div>
-            <div className="social-share-buttons">
-              {/* WhatsApp */}
-              <a
-                id="share-whatsapp"
-                className="social-btn social-btn--whatsapp"
-                href={`https://wa.me/?text=${encodeURIComponent('You are cordially invited to the wedding of Abishmi \u0026 Shesh on July 1, 2026 in Kathmandu! \ud83d\udc9b View the digital invitation: ' + window.location.origin)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Share on WhatsApp"
-              >
-                <svg className="social-btn-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                </svg>
-                <span>WhatsApp</span>
-              </a>
-
-              {/* Facebook */}
-              <a
-                id="share-facebook"
-                className="social-btn social-btn--facebook"
-                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.origin)}&quote=${encodeURIComponent('You are cordially invited to the wedding of Abishmi & Shesh! \ud83d\udc9b')}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Share on Facebook"
-              >
-                <svg className="social-btn-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
-                <span>Facebook</span>
-              </a>
-
-              {/* X (Twitter) */}
-              <a
-                id="share-twitter"
-                className="social-btn social-btn--twitter"
-                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent('You are cordially invited to the wedding of Abishmi & Shesh on July 1, 2026 in Kathmandu! \ud83d\udc9b')}&url=${encodeURIComponent(window.location.origin)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Share on X (Twitter)"
-              >
-                <svg className="social-btn-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.741l7.73-8.835L1.254 2.25H8.08l4.259 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-                <span>Post on X</span>
-              </a>
-
-              {/* Discord */}
-              <a
-                id="share-discord"
-                className="social-btn social-btn--discord"
-                href={`https://discord.com/channels/@me`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  const text = `You are cordially invited to the wedding of Abishmi & Shesh on July 1, 2026 in Kathmandu! 💛 View the digital invitation: ${window.location.origin}`;
-                  navigator.clipboard.writeText(text).then(() => {
-                    const el = e.currentTarget;
-                    el.classList.add('copied');
-                    el.querySelector('.social-btn-label').textContent = 'Copied!';
-                    setTimeout(() => {
-                      el.classList.remove('copied');
-                      el.querySelector('.social-btn-label').textContent = 'Discord';
-                    }, 2000);
-                  });
-                }}
-                aria-label="Copy link for Discord"
-              >
-                <svg className="social-btn-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.08.114 18.1.134 18.11a19.919 19.919 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
-                </svg>
-                <span className="social-btn-label">Discord</span>
-              </a>
-
-              {/* Copy Link */}
-              <button
-                id="share-copy-link"
-                className="social-btn social-btn--copy"
-                onClick={(e) => {
-                  navigator.clipboard.writeText(window.location.origin).then(() => {
-                    const btn = e.currentTarget;
-                    btn.classList.add('copied');
-                    const label = btn.querySelector('.social-btn-label');
-                    const prevText = label.textContent;
-                    label.textContent = 'Copied!';
-                    setTimeout(() => {
-                      btn.classList.remove('copied');
-                      label.textContent = prevText;
-                    }, 2000);
-                  });
-                }}
-                aria-label="Copy invitation link"
-                type="button"
-              >
-                <Copy className="social-btn-icon" style={{ width: '100%', height: '100%' }} />
-                <span className="social-btn-label">Copy Link</span>
-              </button>
-            </div>
           </div>
         </section>
 
@@ -1531,15 +1424,15 @@ export default function App() {
              ========================================== */}
         <footer>
           <div className="footer-logo">A &amp; S</div>
-          <p className="footer-quote">"अहमादिर्हि देवानां महर्षीणां च सर्वशः" • Two Souls, One Destiny</p>
+          <p className="footer-quote">{t.footerQuote}</p>
           {!isReception && (
             <div className="footer-contacts" aria-label="Wedding contact numbers">
-              <a href="tel:+9779851417703">Bride &amp; Groom: 9851417703</a>
+              <a href="tel:+9779851417703">{t.footerBrideGroom}</a>
               <span aria-hidden="true">•</span>
-              <a href="tel:+9779851310689">Mama: 9851310689</a>
+              <a href="tel:+9779851310689">{t.footerMama}</a>
             </div>
           )}
-          <p className="footer-copy">© 2026 Abishmi &amp; Shesh • Built with Mediterranean Elegance</p>
+          <p className="footer-copy">{t.footerCopy}</p>
         </footer>
       </div>
     </>

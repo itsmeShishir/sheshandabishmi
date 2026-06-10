@@ -396,6 +396,7 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 4;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 18px;
   color: rgba(255, 250, 238, 0.86);
   font-size: 9px;
@@ -2470,4 +2471,39 @@ footer {
   .social-btn {
     flex: 1 1 100%;
   }
+}
+
+/* ==========================================
+   TOPBAR LANGUAGE TOGGLE
+   ========================================== */
+.topbar-lang-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 250, 238, 0.45);
+  border-radius: 3px;
+  color: rgba(255, 250, 238, 0.86);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2.8px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.34);
+  padding: 3px 9px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  line-height: 1;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.topbar-lang-btn:hover,
+.topbar-lang-btn:focus-visible {
+  background: rgba(255, 250, 238, 0.12);
+  border-color: rgba(255, 250, 238, 0.8);
+  color: #fffaee;
+  outline: none;
+}
+
+.topbar-lang-label {
+  display: block;
+  pointer-events: none;
 }
